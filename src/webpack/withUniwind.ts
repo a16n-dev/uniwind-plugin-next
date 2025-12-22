@@ -1,4 +1,4 @@
-import {Configuration, NormalModuleReplacementPlugin} from "webpack";
+import {Configuration, DefinePlugin, NormalModuleReplacementPlugin} from "webpack";
 import path from "path";
 import { UniwindConfig } from "./types";
 import {UniwindWebpackPlugin} from "./UniwindWebpackPlugin";
@@ -10,9 +10,31 @@ export function withUniwind(nextConfig: any = {}, uniwindConfig: UniwindConfig):
         transpilePackages: uniq([...(nextConfig.transpilePackages || []), 'uniwind', 'react-native', 'react-native-web']),
         webpack(config: Configuration, options: any): Configuration {
 
-            if (!config.plugins) {
-                config.plugins = [];
-            }
+            if (!config.resolve) config.resolve = {};
+            if (!config.plugins) config.plugins = [];
+
+            // React native compatibility config. Based on https://github.com/expo/expo-webpack-integrations/blob/main/packages/next-adapter/src/index.ts
+            config.resolve.alias = {
+                ...(config.resolve.alias || {}),
+                // Alias internal react-native modules to react-native-web
+                'react-native/Libraries/EventEmitter/RCTDeviceEventEmitter$':
+                    'react-native-web/dist/vendor/react-native/NativeEventEmitter/RCTDeviceEventEmitter',
+                'react-native/Libraries/vendor/emitter/EventEmitter$':
+                    'react-native-web/dist/vendor/react-native/emitter/EventEmitter',
+                'react-native/Libraries/EventEmitter/NativeEventEmitter$':
+                    'react-native-web/dist/vendor/react-native/NativeEventEmitter',
+            };
+            config.resolve.extensions = [
+                '.web.js',
+                '.web.jsx',
+                '.web.ts',
+                ...(config.resolve?.extensions ?? []),
+            ];
+            config.plugins.push(
+                new DefinePlugin({
+                    __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
+                })
+            );
 
             // Rewrite imports, slightly more complex than usual because we need both:
             // Rewrite `react-native` imports to `uniwind/components/index`
@@ -35,7 +57,6 @@ export function withUniwind(nextConfig: any = {}, uniwindConfig: UniwindConfig):
             )
 
             config.plugins.push(new UniwindWebpackPlugin(uniwindConfig))
-
 
             // Execute the user-defined webpack config.
             if (typeof nextConfig.webpack === 'function') {

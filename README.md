@@ -2,14 +2,14 @@
 
 > This is an unofficial plugin, and is not affiliated with Uniwind or Next.js in any way.
 
-Next.js plugin for [Uniwind](https://uniwind.dev/) support. Note that only Webpack-based projects are supported, and there are no plans to support Turbopack. 
+Next.js plugin for [Uniwind](https://uniwind.dev/) support. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects. 
 
-The implementation of this plugin is based on the official [Uniwind Vite plugin](https://docs.uniwind.dev/quickstart#vite), and aims to match its functionality as closely as possible. See the limitations section below for known differences.
+The implementation of this plugin is based on the official [Uniwind Vite plugin](https://docs.uniwind.dev/quickstart#vite), and aims to match its functionality as closely as possible. All Uniwind features should work as expected - see the limitations section below for known differences.
 
 ## Compatibility
-See the table below for tested versions of `uniwind-plugin-next` and corresponding versions of `uniwind`. Other versions may work, but are not guaranteed to.
+See the table below for tested versions of `uniwind-plugin-next` and corresponding versions of `uniwind`. Other versions of `uniwind` may work, but are not guaranteed to.
 
-_Tested on `next` version `16.1`, but other versions will likely work fine._
+Tested on `next` version `16.1`, but other versions will likely work fine.
 
 | uniwind-plugin-next | Uniwind |
 |---------------------|---------|
@@ -30,7 +30,9 @@ pnpm install uniwind uniwind-plugin-next
 import type { NextConfig } from "next";
 import { withUniwind } from 'uniwind-plugin-next'
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+    transpilePackages: ['react-native', 'react-native-web'],
+};
 
 // Wrap your config with `withUniwind()`
 export default withUniwind(nextConfig, {
@@ -38,8 +40,8 @@ export default withUniwind(nextConfig, {
     // Takes the same options as the vite & metro plugins.
     // See https://docs.uniwind.dev/api/metro-config#configuration-options
 });
-
 ```
+> Note that you do not need `@expo/next-adapter` if you are using `uniwind-plugin-next`.
 
 3. Add the postcss plugin
 ```js
