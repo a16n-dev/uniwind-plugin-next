@@ -1,8 +1,8 @@
 module.exports = ()=> {
     return {
-        postcssPlugin: 'uniwind',
-        Once(root) {
-            root.walkDecls(decl => {
+        postcssPlugin: 'uniwind-plugin-next',
+        Once(root: any) {
+            root.walkDecls((decl: any) => {
                 // Transform pixelRatio(X) → calc(X * 1px)
                 decl.value = decl.value.replace(
                     /pixelRatio\(([^)]+)\)/g,

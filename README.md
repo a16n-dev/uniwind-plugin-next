@@ -16,16 +16,62 @@ _Tested on `next` version `16.1`, but other versions will likely work fine._
 | `1.0.0`             | `1.2.2` |
 
 ## Installation & setup
+This setup guide assumes you already have a next.js project setup with Tailwind v4
 
-1. Install the package
+1. Install uniwind and this plugin:
+
+```shell
+pnpm install uniwind uniwind-plugin-next
+```
 
 2. Wrap next.js config with `withUniwind()`
+```ts
+// next.config.ts
+import type { NextConfig } from "next";
+import { withUniwind } from 'uniwind-plugin-next'
+
+const nextConfig: NextConfig = {};
+
+// Wrap your config with `withUniwind()`
+export default withUniwind(nextConfig, {
+    cssEntryFile: './app/globals.css',
+    // Takes the same options as the vite & metro plugins.
+    // See https://docs.uniwind.dev/api/metro-config#configuration-options
+});
+
+```
 
 3. Add the postcss plugin
+```js
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+    'uniwind-plugin-next/postcss': {}, // Add this line
+  },
+};
 
-4. Add `@import 'uniwind';` to global CSS file
+```
 
-5. Add  `suppressHydrationWarning` to root `<html>` tag
+4. Add `@import 'uniwind';` to the global CSS file (or wherever you `@import 'tailwindcss'`)
+```css
+/* src/app/globals.css */
+@import 'tailwindcss';
+@import 'uniwind';
+```
+
+5. Add  `suppressHydrationWarning` to root `<html>` tag (in `app/layout.tsx` by default)
+```tsx
+// src/app/layout.tsx
+...
+
+return (
+    <html lang="en" suppressHydrationWarning>
+      ...
+    </html>
+);
+```
+
+6. Start the dev server to generate `uniwind-types.d.ts`. Make sure that it's included in your `tsconfig.json`'s `include` array.
 
 ## Known limitations
 
