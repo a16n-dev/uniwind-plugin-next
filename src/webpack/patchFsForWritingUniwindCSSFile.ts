@@ -1,6 +1,7 @@
 import path from "path";
 import fs from 'fs'
 
+// Find the uniwind package directory within node_modules
 const uniwindDir = path.dirname(require.resolve("uniwind/package.json"))
 
 /**
@@ -17,7 +18,7 @@ const uniwindDir = path.dirname(require.resolve("uniwind/package.json"))
  * await buildCSS(themes, cssEntryFile);
  * unpatchFs();
  */
-export function patchFs() {
+export function patchFsForWritingUniwindCSSFile() {
     const originalWriteFileSync = fs.writeFileSync;
 
     fs.writeFileSync = function (_path, data, options) {

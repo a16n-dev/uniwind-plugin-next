@@ -1,15 +1,13 @@
-import {uniq} from "./utils/common";
 import {Configuration, NormalModuleReplacementPlugin} from "webpack";
 import path from "path";
-import {UNIWIND_PACKAGE_NAME, UniwindConfig} from "./types";
+import { UniwindConfig } from "./types";
 import {UniwindWebpackPlugin} from "./UniwindWebpackPlugin";
-
+import {uniq} from "./uniwind/src/utils/common";
 
 export function withUniwind(nextConfig: any = {}, uniwindConfig: UniwindConfig): any {
-    // Add the package to "transpilePackages"
     return {
         ...nextConfig,
-        transpilePackages: uniq([...(nextConfig.transpilePackages || []), UNIWIND_PACKAGE_NAME, 'react-native', 'react-native-web']),
+        transpilePackages: uniq([...(nextConfig.transpilePackages || []), 'uniwind', 'react-native', 'react-native-web']),
         webpack(config: Configuration, options: any): Configuration {
 
             if (!config.plugins) {
