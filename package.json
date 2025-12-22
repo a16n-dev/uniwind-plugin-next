@@ -1,6 +1,6 @@
 {
   "name": "uniwind-plugin-next",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compatibility plugin for using Uniwind with Next.js",
   "scripts": {
     "build": "tsdown"

@@ -28,6 +28,7 @@ export function withUniwind(nextConfig: any = {}, uniwindConfig: UniwindConfig):
                 '.web.js',
                 '.web.jsx',
                 '.web.ts',
+                '.web.tsx',
                 ...(config.resolve?.extensions ?? []),
             ];
             config.plugins.push(
