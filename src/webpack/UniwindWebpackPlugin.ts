@@ -58,9 +58,10 @@ export class UniwindWebpackPlugin {
                 },
             ],
         });
-        // Add "use client" to uniwind web components barrel file
+        // Add "use client" to uniwind web components
         compiler.options.module.rules.push({
-            test: /index\.js$/,
+            test: /\.js$/,
+            exclude: /index\.js$/,
             include: /uniwind[\/\\]dist[\/\\]module[\/\\]components[\/\\]web/,
             use: [
                 {
