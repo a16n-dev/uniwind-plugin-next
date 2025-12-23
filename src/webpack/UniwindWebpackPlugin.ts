@@ -7,6 +7,8 @@ import {buildCSS} from "./uniwind/src/css";
 import {buildDtsFile} from "./uniwind/src/utils/buildDtsFile";
 import {stringifyThemes} from "./uniwind/src/utils/stringifyThemes";
 
+const dirname = typeof __dirname !== 'undefined' ? __dirname : import.meta.dirname
+
 export class UniwindWebpackPlugin {
     private hasRun = false
     private readonly themes: string[]
@@ -51,7 +53,7 @@ export class UniwindWebpackPlugin {
             include: /uniwind[\/\\]dist/,
             use: [
                 {
-                    loader: path.resolve(__dirname, 'configInjectionLoader.js'),
+                    loader: path.resolve(dirname, 'configInjectionLoader.js'),
                     options: {
                         stringifiedThemes: stringifyThemes(this.themes),
                     },
@@ -65,7 +67,7 @@ export class UniwindWebpackPlugin {
             include: /uniwind[\/\\]dist[\/\\]module[\/\\]components[\/\\]web/,
             use: [
                 {
-                    loader: path.resolve(__dirname, 'clientDirectiveLoader.js'),
+                    loader: path.resolve(dirname, 'clientDirectiveLoader.js'),
                 },
             ],
         })
