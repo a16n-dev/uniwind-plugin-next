@@ -58,5 +58,15 @@ export class UniwindWebpackPlugin {
                 },
             ],
         });
+        // Add "use client" to uniwind web components barrel file
+        compiler.options.module.rules.push({
+            test: /index\.js$/,
+            include: /uniwind[\/\\]dist[\/\\]module[\/\\]components[\/\\]web/,
+            use: [
+                {
+                    loader: path.resolve(__dirname, 'clientDirectiveLoader.js'),
+                },
+            ],
+        })
     }
 }

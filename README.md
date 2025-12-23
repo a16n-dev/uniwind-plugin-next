@@ -1,15 +1,15 @@
 # uniwind-plugin-next
 
-> This is an unofficial plugin, and is not affiliated with Uniwind or Next.js in any way.
+> This is an unofficial plugin, and is not affiliated with Uniwind or Next.js.
 
-Next.js plugin for [Uniwind](https://uniwind.dev/) support. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects. 
+[Uniwind](https://uniwind.dev/) config plugin for Next.js. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects. 
 
-The implementation of this plugin is based on the official [Uniwind Vite plugin](https://docs.uniwind.dev/quickstart#vite), and aims to match its functionality as closely as possible. All Uniwind features should work as expected - see the limitations section below for known differences.
+The implementation of this plugin is based on the official [Uniwind Vite plugin](https://docs.uniwind.dev/quickstart#vite), and aims to match its functionality as closely as possible. All Uniwind features should work as expected - see the limitations section below for any documented differences.
 
 ## Compatibility
 See the table below for tested versions of `uniwind-plugin-next` and corresponding versions of `uniwind`. Other versions of `uniwind` may work, but are not guaranteed to.
 
-Tested on `next` version `16.1`, but other versions will likely work fine.
+Tested on Next `16.1`, but other versions will likely work fine.
 
 | uniwind-plugin-next | Uniwind |
 |---------------------|---------|
@@ -21,13 +21,14 @@ This setup guide assumes you already have a next.js project setup with Tailwind 
 1. Install uniwind and this plugin:
 
 ```shell
-pnpm install uniwind uniwind-plugin-next
+pnpm install uniwind uniwind-plugin-next @expo/next-adapter
 ```
 
 2. Wrap next.js config with `withUniwind()`
 ```ts
 // next.config.ts
 import type { NextConfig } from "next";
+import { withExpo } from "@expo/next-adapter";
 import { withUniwind } from 'uniwind-plugin-next'
 
 const nextConfig: NextConfig = {
@@ -35,20 +36,19 @@ const nextConfig: NextConfig = {
 };
 
 // Wrap your config with `withUniwind()`
-export default withUniwind(nextConfig, {
+export default withUniwind(withExpo(nextConfig), {
     cssEntryFile: './app/globals.css',
     // Takes the same options as the vite & metro plugins.
     // See https://docs.uniwind.dev/api/metro-config#configuration-options
 });
 ```
-> Note that you do not need `@expo/next-adapter` if you are using `uniwind-plugin-next`.
 
 3. Add the postcss plugin
 ```js
 const config = {
   plugins: {
     "@tailwindcss/postcss": {},
-    'uniwind-plugin-next/postcss': {}, // Add this line
+    "uniwind-plugin-next/postcss": {}, // Add this line
   },
 };
 

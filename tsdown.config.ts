@@ -7,5 +7,6 @@ export default defineConfig({
   exports: true,
   copy: [
     { from: 'src/webpack/configInjectionLoader.js', to: 'dist' },
+    { from: 'src/webpack/clientDirectiveLoader.js', to: 'dist' },
   ]
 });
