@@ -18,7 +18,7 @@ Tested on Next `16.1`, but other versions will likely work fine.
 ## Installation & setup
 This setup guide assumes you already have a next.js project setup with Tailwind v4
 
-1. Install uniwind and this plugin:
+1. Install uniwind and this plugin. You will probably also need `@expo/next-adapter` if you don't already have it, to handle react-native web support.
 
 ```shell
 pnpm install uniwind uniwind-plugin-next @expo/next-adapter
@@ -47,8 +47,8 @@ export default withUniwind(withExpo(nextConfig), {
 ```js
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
-    "uniwind-plugin-next/postcss": {}, // Add this line
+    '@tailwindcss/postcss': {},
+    'uniwind-plugin-next/postcss': {}, // Add this line
   },
 };
 
@@ -74,6 +74,13 @@ return (
 ```
 
 6. Start the dev server to generate `uniwind-types.d.ts`. Make sure that it's included in your `tsconfig.json`'s `include` array.
+
+## SSR Considerations
+- This plugin marks all Uniwind web components with `'use client'` automatically, so you do not need to do this manually.
+
+- Be aware that some Uniwind features, such as `withUniwind` and `useResolveClassNames` will not work in a server environment, as they rely on accessing `window` or `document`.
+
+- 
 
 ## Known limitations
 
