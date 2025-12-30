@@ -1,12 +1,14 @@
 'use client';
 import {Uniwind} from "uniwind";
 
-export function Root({children, theme}: {children: React.ReactNode, theme?: string}) {
+export function Root({children, theme, adaptive}: {children: React.ReactNode, theme?: string, adaptive?: boolean}) {
 
-    if(typeof window === 'undefined' && theme) {
+    console.log(`Initial theme is ${theme} (adaptive: ${adaptive})`)
+
+    if(theme || adaptive) {
         // Ensure the theme is set on the server
-        Uniwind.setTheme(theme as any);
+        Uniwind.setTheme(adaptive ? 'system' : theme as any);
     }
 
-    return <html lang="en" className={Uniwind.currentTheme}>{children}</html>
+    return <html lang="en" className={theme}>{children}</html>
 }

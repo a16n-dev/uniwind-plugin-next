@@ -4,6 +4,7 @@
   "description": "Compatibility plugin for using Uniwind with Next.js",
   "scripts": {
     "build": "tsdown",
+    "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
@@ -18,7 +19,8 @@
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "style": "./dist/uniwind.css"
     },
     "./postcss": {
       "require": "./dist/postcss/index.cjs",

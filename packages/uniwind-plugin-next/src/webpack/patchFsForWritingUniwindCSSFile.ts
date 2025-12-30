@@ -4,6 +4,7 @@ import fs from 'fs'
 // Find the uniwind package directory within node_modules
 const uniwindDir = path.dirname(require.resolve("uniwind/package.json"))
 
+
 /**
  * The contents of the `css` directory is copied direct from the uniwind source code. This makes it easier to keep it in
  * sync with the upstream uniwind package, so we purposefully avoid modifying any code in `css`.
@@ -24,7 +25,7 @@ export function patchFsForWritingUniwindCSSFile() {
     fs.writeFileSync = function (_path, data, options) {
         let newPath = _path
         if(typeof newPath === 'string' && newPath.endsWith('uniwind.css')) {
-            newPath =  path.join(uniwindDir, 'uniwind.css')
+            newPath =  path.join(__dirname, 'uniwind.css')
         }
 
         return originalWriteFileSync.call(fs, newPath, data, options);

@@ -1,3 +1,5 @@
+const postcss = require('postcss');
+
 module.exports = ()=> {
     return {
         postcssPlugin: 'uniwind-plugin-next',
@@ -19,6 +21,16 @@ module.exports = ()=> {
                     '1px'
                 )
             })
+            // Replace `@import 'uniwind'` with `@import 'uniwind-plugin-next'`
+            root.walkAtRules('import', (rule: any) => {
+                    // Remove surrounding quotes from the path
+                    const importPath = rule.params.replace(/['"]/g, '');
+
+                    if (importPath === 'uniwind') {
+                        rule.params = '"uniwind-plugin-next"';
+                        root.prepend(postcss.atRule({name: 'layer', params: "rnw" }))
+                    }
+                });
         }
     }
 }

@@ -1,80 +1,96 @@
 'use client';
 
-import { AppRegistry, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import {useRef} from "react";
+import {useServerInsertedHTML} from "next/navigation";
 
-/**
- * An undocumented method that exists in react-native-web to get the
- * current stylesheet contents as text.
- * https://github.com/necolas/react-native-web/blob/fc423ba4fea944ca50ab4bbc11f8eee6511d92c5/packages/react-native-web/src/exports/StyleSheet/index.js#L144
- */
-const RNStyleSheet = StyleSheet as typeof StyleSheet & {
-    getSheet: () => { id: string; textContent: string };
-};
+const REACT_NATIVE_SHEET_ID = 'react-native-stylesheet';
+const NEW_SHEET_ID = 'react-native-stylesheet-layered';
 
-const _getSheet = RNStyleSheet.getSheet;
-RNStyleSheet.getSheet = function () {
-    const sheet = _getSheet.call(this);
+const layerBoundaryRegex = /\[stylesheet-group="[^01]"]/;
 
-    return {
-        id: 'react-native-stylesheet-uniwind',
-        textContent: processSheetText(sheet.textContent),
-    };
-};
+if (typeof window !== 'undefined') {
+    let elemProxy: HTMLStyleElement;
+    const _getElementById = document.getElementById;
+    document.getElementById = function(id: string) {
+        if(id === REACT_NATIVE_SHEET_ID) {
+        console.log('Hit')
+            if(!elemProxy) elemProxy = { sheet: buildRNWProxy() } as HTMLStyleElement;
+            return elemProxy;
+        }
+        return _getElementById.call(document, id);
+    }
+
+    function buildRNWProxy() {
+        const {layeredSheet, flattenedSheet} = buildLinkedLayeredSheet();
+
+        if(!layeredSheet) return flattenedSheet;
+
+        return new Proxy(flattenedSheet, {
+            get(target, prop) {
+                // Override 'insert rule' to also insert into layered sheet
+                if(prop === 'insertRule') {
+                    return function insertRule(text: string, index: number) {
+                        flattenedSheet.insertRule(text, index);
+                        // find the index of the groups
+                        const cutoffIndex = [...flattenedSheet.cssRules].findIndex(rule => layerBoundaryRegex.exec(rule.cssText));
+                        if(cutoffIndex === -1 || index <= cutoffIndex) {
+                            // insert into the layer
+                            const layerRule = layeredSheet.cssRules[0] as CSSLayerBlockRule;
+                            layerRule.insertRule(text, layerRule.cssRules.length);
+                        } else {
+                            // insert into the sheet normally
+                            layeredSheet.insertRule(text, layeredSheet.cssRules.length);
+                        }
+                    }
+                }
+                const value = (target as any)[prop]
+                return typeof value === 'function' ? value.bind(target) : value;
+            }
+        })
+    }
+
+    function buildLinkedLayeredSheet() {
+        const flattenedSheet = new CSSStyleSheet();
+        const layeredSheet = (document.getElementById(NEW_SHEET_ID) as HTMLStyleElement)?.sheet;
+        if(!layeredSheet) return { flattenedSheet };
+        // ensure that the first rule in the layered sheet is a layer
+        if(layeredSheet.cssRules.length === 0 || !(layeredSheet.cssRules[0] instanceof CSSLayerBlockRule)) {
+            layeredSheet.insertRule('@layer rnw {}', 0);
+        }
+        // Traverse the layered sheet to build the flattened sheet
+        const rules =  [...layeredSheet.cssRules];
+        while(rules.length > 0) {
+            const rule = rules.shift()!;
+            if(rule instanceof CSSLayerBlockRule) {
+                rules.unshift(...rule.cssRules);
+            } else {
+                flattenedSheet.insertRule(rule.cssText, flattenedSheet.cssRules.length);
+            }
+        }
+        return {layeredSheet, flattenedSheet };
+    }
+}
 
 /**
  * Processes the stylesheet text to wrap reset styles in a `@layer rnw {}` block.
  */
 function processSheetText(text: string): string {
-    const endIndex = /\[stylesheet-group="[^01]"]/.exec(text)?.index;
-
+    const endIndex = layerBoundaryRegex.exec(text)?.index;
     if (!endIndex) return text;
-
     return `@layer rnw {\n${text.substring(0, endIndex)}}\n${text.substring(endIndex)}`;
-}
-
-function getOrCreateStyleElement(id: string): HTMLStyleElement {
-    let el = document.getElementById(id);
-    if (!el) {
-        el = document.createElement('style');
-        el.id = id;
-        document.head.prepend(el);
-    }
-    return el as HTMLStyleElement;
 }
 
 /**
  * This runs immediately on the client. It disables the actual rnw stylesheet,
  * and patches the `insertRule` method to also update our modified stylesheet.
  */
-if (typeof window !== 'undefined') {
-    const rnwStyle =getOrCreateStyleElement('react-native-stylesheet');
-    const newStyleElem = getOrCreateStyleElement(RNStyleSheet.getSheet().id);
-
-    if (rnwStyle?.sheet) {
-        // Disable the original stylesheet and populate the new one
-        rnwStyle.sheet.disabled = true;
-
-        const _insertRule = rnwStyle.sheet.insertRule;
-        rnwStyle.sheet.insertRule = function (
-            ...args: Parameters<InstanceType<typeof CSSStyleSheet>['insertRule']>
-        ) {
-            const res = _insertRule.apply(this, args);
-            const sheet = RNStyleSheet.getSheet();
-            newStyleElem.textContent = sheet.textContent;
-            return res;
-        };
-    }
-}
-
-/**
- * From https://necolas.github.io/react-native-web/docs/rendering/#server-api
- */
 export function RNWStyleSheet() {
-    AppRegistry.registerComponent('App', () => () => null);
+    const hasInserted = useRef(false);
+    useServerInsertedHTML(() => {
+        if(hasInserted.current) return;
+        hasInserted.current = true;
 
-    const { getStyleElement } = (AppRegistry as any).getApplication('App', {
-        initialProps: {},
-    });
-
-    return getStyleElement();
+        return <style dangerouslySetInnerHTML={{__html: processSheetText((StyleSheet as any).getSheet().textContent)}} id={NEW_SHEET_ID}/>
+    })
 }

@@ -47,8 +47,8 @@ export default withUniwind(withExpo(nextConfig), {
 ```js
 const config = {
   plugins: {
-    '@tailwindcss/postcss': {},
     'uniwind-plugin-next/postcss': {}, // Add this line
+    '@tailwindcss/postcss': {},
   },
 };
 

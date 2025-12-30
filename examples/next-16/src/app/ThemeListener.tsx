@@ -11,6 +11,7 @@ export function ThemeListener() {
 
     useEffect(() => {
         setCookie('uniwind-theme', theme)
+        setCookie('uniwind-adaptive', hasAdaptiveThemes)
     }, [theme, hasAdaptiveThemes]);
 
     return null;
