@@ -32,14 +32,23 @@ function processSheetText(text: string): string {
     return `@layer rnw {\n${text.substring(0, endIndex)}}\n${text.substring(endIndex)}`;
 }
 
+function getOrCreateStyleElement(id: string): HTMLStyleElement {
+    let el = document.getElementById(id);
+    if (!el) {
+        el = document.createElement('style');
+        el.id = id;
+        document.head.prepend(el);
+    }
+    return el as HTMLStyleElement;
+}
+
 /**
  * This runs immediately on the client. It disables the actual rnw stylesheet,
  * and patches the `insertRule` method to also update our modified stylesheet.
  */
 if (typeof window !== 'undefined') {
-    const rnwStyle = document.querySelector<HTMLStyleElement>(
-        '#react-native-stylesheet',
-    );
+    const rnwStyle =getOrCreateStyleElement('react-native-stylesheet');
+    const newStyleElem = getOrCreateStyleElement(RNStyleSheet.getSheet().id);
 
     if (rnwStyle?.sheet) {
         // Disable the original stylesheet and populate the new one
@@ -51,7 +60,7 @@ if (typeof window !== 'undefined') {
         ) {
             const res = _insertRule.apply(this, args);
             const sheet = RNStyleSheet.getSheet();
-            document.getElementById(sheet.id)!.textContent = sheet.textContent;
+            newStyleElem.textContent = sheet.textContent;
             return res;
         };
     }
