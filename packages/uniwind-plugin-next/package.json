@@ -1,0 +1,36 @@
+{
+  "name": "uniwind-plugin-next",
+  "version": "1.1.2",
+  "description": "Compatibility plugin for using Uniwind with Next.js",
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsdown": "^0.18.2"
+  },
+  "peerDependencies": {
+    "@tailwindcss/node": "^4",
+    "lightningcss": ">=1.30.2",
+    "uniwind": "~1.2.2",
+    "webpack": "^5"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./postcss": {
+      "require": "./dist/postcss/index.cjs",
+      "import": "./dist/postcss/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}
