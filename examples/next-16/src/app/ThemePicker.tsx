@@ -17,7 +17,7 @@ export function ThemePicker() {
 
 
     return <View className={'items-center'}>
-        <Text>Choose Theme</Text>
+        <Text className={'text-foreground text-xl mb-2 font-bold'}>Choose Theme</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View className="flex-row gap-2">
                 {themes.map((t) => (

@@ -93,4 +93,5 @@ export function RNWStyleSheet() {
 
         return <style dangerouslySetInnerHTML={{__html: processSheetText((StyleSheet as any).getSheet().textContent)}} id={NEW_SHEET_ID}/>
     })
+    return null;
 }

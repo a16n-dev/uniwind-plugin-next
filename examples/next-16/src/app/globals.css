@@ -2,41 +2,41 @@
 @import 'uniwind';
 
 @layer theme {
-  :root {
-    /* Dark theme variables */
-    @variant dark {
-      --color-background: #000000;
-      --color-foreground: #ffffff;
-      --color-primary: #3b82f6;
-      --color-card: #1f2937;
-      --color-border: #374151;
-    }
+    :root {
+        /* Dark theme variables */
+        @variant dark {
+            --color-background: #000000;
+            --color-foreground: #ffffff;
+            --color-primary: #3b82f6;
+            --color-card: #1f2937;
+            --color-border: #374151;
+        }
 
-    /* Light theme variables */
-    @variant light {
-      --color-background: #ffffff;
-      --color-foreground: #000000;
-      --color-primary: #3b82f6;
-      --color-card: #ffffff;
-      --color-border: #e5e7eb;
-    }
+        /* Light theme variables */
+        @variant light {
+            --color-background: #ffffff;
+            --color-foreground: #000000;
+            --color-primary: #3b82f6;
+            --color-card: #ffffff;
+            --color-border: #e5e7eb;
+        }
 
-    /* Ocean theme variables */
-    @variant ocean {
-      --color-background: #1e1b4b;
-      --color-foreground: #fef3c7;
-      --color-primary: #fbbf24;
-      --color-card: #312e81;
-      --color-border: #4c1d95;
-    }
+        /* Ocean theme variables */
+        @variant ocean {
+            --color-background: #1e1b4b;
+            --color-foreground: #fef3c7;
+            --color-primary: #fbbf24;
+            --color-card: #312e81;
+            --color-border: #4c1d95;
+        }
 
-    /*!* Sunset theme variables *!*/
-    @variant sunset {
-      --color-background: #ffedd5;
-      --color-foreground: #7c2d12;
-      --color-primary: #f97316;
-      --color-card: #fed7aa;
-      --color-border: #fb923c;
+        /*!* Sunset theme variables *!*/
+        @variant sunset {
+            --color-background: #ffedd5;
+            --color-foreground: #7c2d12;
+            --color-primary: #f97316;
+            --color-card: #fed7aa;
+            --color-border: #fb923c;
+        }
     }
-  }
 }

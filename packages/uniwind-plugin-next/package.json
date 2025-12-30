@@ -20,7 +20,7 @@
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
-      "style": "./dist/uniwind.css"
+      "style": "./dist/webpack/uniwind/uniwind.css"
     },
     "./postcss": {
       "require": "./dist/postcss/index.cjs",

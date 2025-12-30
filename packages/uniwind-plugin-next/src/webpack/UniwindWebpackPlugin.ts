@@ -2,7 +2,6 @@ import {UniwindConfig} from "./types";
 import type { Compiler } from 'webpack'
 import path from "path";
 import {uniq} from "./uniwind/src/utils/common";
-import { patchFsForWritingUniwindCSSFile } from "./patchFsForWritingUniwindCSSFile";
 import {buildCSS} from "./uniwind/src/css";
 import {buildDtsFile} from "./uniwind/src/utils/buildDtsFile";
 import {stringifyThemes} from "./uniwind/src/utils/stringifyThemes";
@@ -37,9 +36,7 @@ export class UniwindWebpackPlugin {
                 this.hasRun = true
 
                 // 1. Generate uniwind.css
-                const removePatch = patchFsForWritingUniwindCSSFile();
                 await buildCSS(this.themes, this.cssEntryFile);
-                removePatch();
 
                 // 2. Generate uniwind-types.d.ts
                 buildDtsFile(this.dtsFile, stringifyThemes(this.themes))

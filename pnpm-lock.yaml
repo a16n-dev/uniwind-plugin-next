@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  uniwind:
+    hash: bejuarj5t4sboyqpss77qv42u4
+    path: patches/uniwind.patch
+
 importers:
 
   .:
@@ -37,7 +42,7 @@ importers:
         version: 0.21.2(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       uniwind:
         specifier: ^1.2.2
-        version: 1.2.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        version: 1.2.2(patch_hash=bejuarj5t4sboyqpss77qv42u4)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       uniwind-plugin-next:
         specifier: workspace:*
         version: link:../../packages/uniwind-plugin-next
@@ -80,7 +85,7 @@ importers:
         version: 1.30.2
       uniwind:
         specifier: ~1.2.2
-        version: 1.2.2(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        version: 1.2.2(patch_hash=bejuarj5t4sboyqpss77qv42u4)(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       webpack:
         specifier: ^5
         version: 5.104.1
@@ -7161,7 +7166,7 @@ snapshots:
 
   undici-types@7.16.0: {}
 
-  uniwind@1.2.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
+  uniwind@1.2.2(patch_hash=bejuarj5t4sboyqpss77qv42u4)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
     dependencies:
       '@tailwindcss/node': 4.1.17
       '@tailwindcss/oxide': 4.1.17
@@ -7171,7 +7176,7 @@ snapshots:
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3)
       tailwindcss: 4.1.18
 
-  uniwind@1.2.2(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
+  uniwind@1.2.2(patch_hash=bejuarj5t4sboyqpss77qv42u4)(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
     dependencies:
       '@tailwindcss/node': 4.1.17
       '@tailwindcss/oxide': 4.1.17

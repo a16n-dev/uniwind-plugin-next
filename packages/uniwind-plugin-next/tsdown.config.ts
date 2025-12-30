@@ -3,16 +3,17 @@ import { defineConfig } from 'tsdown';
 export default defineConfig({
   entry: ['src/postcss/index.ts', 'src/index.ts'],
   format: ['cjs', 'esm'],
+  unbundle: true,
   dts: true,
   exports: {
-    customExports(pkg, context) {
+    customExports(pkg) {
       if(!pkg['.']) pkg['.'] = {}
-      pkg['.'].style = "./dist/uniwind.css"
+      pkg['.'].style = "./dist/webpack/uniwind/uniwind.css"
       return pkg
     },
   },
   copy: [
-    { from: 'src/webpack/configInjectionLoader.js', to: 'dist' },
-    { from: 'src/webpack/clientDirectiveLoader.js', to: 'dist' },
+    { from: 'src/webpack/configInjectionLoader.js', to: 'dist/webpack' },
+    { from: 'src/webpack/clientDirectiveLoader.js', to: 'dist/webpack' },
   ]
 });

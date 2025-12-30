@@ -6,6 +6,6 @@ const nextConfig: NextConfig = {
 };
 
 export default withUniwind(nextConfig, {
-    cssEntryFile: './app/globals.css',
+    cssEntryFile: './src/app/globals.css',
     extraThemes: ['ocean', 'sunset'],
 });
