@@ -11,10 +11,16 @@ if (typeof window !== "undefined") {
 
   function buildRNWProxy() {
     const flattenedSheet = new CSSStyleSheet();
-    const layeredSheet = (
+    let layeredSheet = (
       document.getElementById(NEW_SHEET_ID) as HTMLStyleElement
     )?.sheet;
 
+    if (!layeredSheet) {
+      const styleElem = document.createElement("style");
+      styleElem.id = NEW_SHEET_ID;
+      document.head.prepend(styleElem);
+      layeredSheet = styleElem.sheet;
+    }
     if (!layeredSheet) return flattenedSheet;
     // ensure that the first rule in the layered sheet is a layer
     if (!(layeredSheet.cssRules[0] instanceof CSSLayerBlockRule)) {

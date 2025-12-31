@@ -29,6 +29,14 @@ export default function Home() {
           refreshing the page to try it out!
         </Text>
       </View>
+      <a
+        href={
+          "https://github.com/a16n-dev/uniwind-plugin-next/tree/main/examples/next-16"
+        }
+        target={"_blank"}
+      >
+        <Text className={"text-primary underline"}>Source code</Text>
+      </a>
     </View>
   );
 }

@@ -1,2 +1,2 @@
 import "./ReactNativeWebTailwindCompat";
-export { getServerStylesheet } from "./getServerStylesheet";
+export { getServerStyleSheet } from "./getServerStyleSheet";
