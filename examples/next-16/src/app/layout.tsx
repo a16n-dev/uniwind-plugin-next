@@ -1,10 +1,10 @@
-import { RNWStyleSheet } from "@/app/RNWStyleSheet";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { UniwindThemeProvider } from "@/app/UniwindThemeProvider";
 import "./globals.css";
+import { ReactNativeWebLayeredStyleSheet } from "@/app/ReactNativeWebLayeredStyleSheet";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +34,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <RNWStyleSheet />
+        <ReactNativeWebLayeredStyleSheet />
         <UniwindThemeProvider
           initialTheme={theme}
           initialHasAdaptiveThemes={adaptive === "true"}

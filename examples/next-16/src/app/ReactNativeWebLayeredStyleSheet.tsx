@@ -1,10 +1,10 @@
 "use client";
-import "./patchRnwStyles";
+import "./useReactNativeWebLayeredStyles";
 import { StyleSheet } from "react-native";
 import { useRef } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 
-export function RNWStyleSheet() {
+export function ReactNativeWebLayeredStyleSheet() {
   const hasInserted = useRef(false);
   useServerInsertedHTML(() => {
     if (hasInserted.current) return;
