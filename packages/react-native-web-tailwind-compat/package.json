@@ -11,14 +11,17 @@
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "devDependencies": {
-    "tsdown": "^0.18.2"
+    "@vitest/ui": "^4.0.16",
+    "tsdown": "^0.18.2",
+    "vitest": "^4.0.16"
   },
   "peerDependencies": {
-    "react-native-web": "^0.19",
-    "react-native": "^0.79"
+    "react-native": "^0.79",
+    "react-native-web": "^0.19"
   },
   "exports": {
     ".": {

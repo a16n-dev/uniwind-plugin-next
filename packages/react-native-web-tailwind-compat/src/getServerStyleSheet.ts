@@ -11,7 +11,7 @@ export function getServerStyleSheet() {
   };
 }
 
-function processSheetText(text: string): string {
+export function processSheetText(text: string): string {
   const endIndex = layerBoundaryRegex.exec(text)?.index ?? 0;
   return `@layer rnw {\n${text.substring(0, endIndex)}}\n${text.substring(endIndex)}`;
 }
