@@ -19,6 +19,7 @@
     "uniwind-plugin-next": "workspace:*"
   },
   "devDependencies": {
+    "@expo/next-adapter": "^6.0.0",
     "@tailwindcss/node": "^4.1.18",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
