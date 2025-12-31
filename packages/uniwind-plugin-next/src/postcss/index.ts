@@ -21,7 +21,7 @@ export default function UniwindPluginNext() {
         const importPath = rule.params.replace(/['"]/g, "");
 
         if (importPath === "uniwind") {
-          rule.params = '"uniwind-plugin-next"';
+          rule.params = '"uniwind-plugin-next/css"';
         }
       });
     },

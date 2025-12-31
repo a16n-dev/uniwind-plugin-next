@@ -34,14 +34,16 @@
   "exports": {
     ".": {
       "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs",
-      "style": "./dist/webpack/uniwind/uniwind.css"
+      "import": "./dist/index.mjs"
     },
     "./postcss": {
       "require": "./dist/postcss/index.cjs",
       "import": "./dist/postcss/index.mjs"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./css": {
+      "style": "./dist/webpack/uniwind/uniwind.css"
+    }
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",

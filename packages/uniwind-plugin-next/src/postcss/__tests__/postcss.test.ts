@@ -158,11 +158,11 @@ describe("uniwind-plugin-next PostCSS plugin", () => {
   });
 
   describe("@import transformation", () => {
-    it('should transform @import "uniwind" to @import "uniwind-plugin-next"', async () => {
+    it('should transform @import "uniwind" to @import "uniwind-plugin-next/css"', async () => {
       const input = '@import "uniwind";';
       const output = await processCSS(input);
 
-      expect(output).toContain('@import "uniwind-plugin-next"');
+      expect(output).toContain('@import "uniwind-plugin-next/css"');
       expect(output).not.toContain('@import "uniwind"');
     });
 
@@ -170,7 +170,7 @@ describe("uniwind-plugin-next PostCSS plugin", () => {
       const input = "@import 'uniwind';";
       const output = await processCSS(input);
 
-      expect(output).toContain('"uniwind-plugin-next"');
+      expect(output).toContain('"uniwind-plugin-next/css"');
     });
 
     it("should not transform other @import statements", async () => {

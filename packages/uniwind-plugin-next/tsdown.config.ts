@@ -7,8 +7,8 @@ export default defineConfig({
   dts: true,
   exports: {
     customExports(pkg) {
-      if (!pkg["."]) pkg["."] = {};
-      pkg["."].style = "./dist/webpack/uniwind/uniwind.css";
+      if (!pkg["./css"]) pkg["./css"] = {};
+      pkg["./css"].style = "./dist/webpack/uniwind/uniwind.css";
       return pkg;
     },
   },
