@@ -12,6 +12,7 @@ export function ThemePicker() {
     { name: "ocean", label: "Ocean", icon: "🌊" },
     { name: "sunset", label: "Sunset", icon: "🌅" },
   ] as const;
+
   const activeTheme = hasAdaptiveThemes ? "system" : theme;
 
   return (
