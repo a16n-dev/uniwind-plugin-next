@@ -1,6 +1,4 @@
-const postcss = require("postcss");
-
-module.exports = () => {
+export default function UniwindPluginNext() {
   return {
     postcssPlugin: "uniwind-plugin-next",
     Once(root: any) {
@@ -28,6 +26,6 @@ module.exports = () => {
       });
     },
   };
-};
+}
 
-module.exports.postcss = true;
+UniwindPluginNext.postcss = true;

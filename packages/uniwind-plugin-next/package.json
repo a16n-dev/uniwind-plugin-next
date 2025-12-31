@@ -8,18 +8,26 @@
     "type": "git",
     "url": "https://github.com/a16n-dev/uniwind-plugin-next.git"
   },
+  "type": "module",
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "tsdown": "^0.18.2"
+    "@vitest/ui": "^4.0.16",
+    "postcss": "^8.5.6",
+    "tsdown": "^0.18.2",
+    "vitest": "^4.0.16"
   },
   "peerDependencies": {
-    "postcss": "^8",
     "@tailwindcss/node": "^4",
     "lightningcss": ">=1.30.2",
+    "postcss": "^8",
     "uniwind": "~1.2.2",
     "webpack": "^5"
   },
