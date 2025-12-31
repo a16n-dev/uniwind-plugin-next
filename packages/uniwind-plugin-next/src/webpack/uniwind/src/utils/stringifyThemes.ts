@@ -1,1 +1,2 @@
-export const stringifyThemes = (themes: Array<string> = []) => `[${themes.map((theme) => `'${theme}'`).join(', ')}]`
+export const stringifyThemes = (themes: Array<string> = []) =>
+  `[${themes.map((theme) => `'${theme}'`).join(", ")}]`;

@@ -1,11 +1,9 @@
 import { RNWStyleSheet } from "@/app/RNWStyleSheet";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import {Root} from "@/app/Root";
-import { getCookie, } from 'cookies-next/server';
-import { cookies } from 'next/headers';
-import {ThemeListener} from "@/app/ThemeListener";
-
+import { getCookie } from "cookies-next/server";
+import { cookies } from "next/headers";
+import { UniwindThemeProvider } from "@/app/UniwindThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,20 +25,23 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   // Read the theme from cookies to support SSR with the correct theme
-  const theme = await getCookie('uniwind-theme', { cookies });
-  const adaptive = await getCookie('uniwind-adaptive', { cookies });
+  const theme = await getCookie("uniwind-theme", { cookies });
+  const adaptive = await getCookie("uniwind-adaptive", { cookies });
 
   return (
-    <Root theme={theme} adaptive={adaptive === 'true'}>
+    <html lang="en" className={theme}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <RNWStyleSheet/>
-        <ThemeListener/>
-        {children}
+        <RNWStyleSheet />
+        <UniwindThemeProvider
+          initialTheme={theme}
+          initialHasAdaptiveThemes={adaptive === "true"}
+        >
+          {children}
+        </UniwindThemeProvider>
       </body>
-    </Root>
+    </html>
   );
 }

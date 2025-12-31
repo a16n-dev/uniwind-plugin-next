@@ -1,11 +1,11 @@
-const variants = ['ios', 'android', 'web', 'native']
+const variants = ["ios", "android", "web", "native"];
 
 export const generateCSSForVariants = () => {
-    let css = ''
+  let css = "";
 
-    variants.forEach(variant => {
-        css += `@custom-variant ${variant} (${variant === 'web' ? 'html &' : `@media ${variant}`});\n`
-    })
+  variants.forEach((variant) => {
+    css += `@custom-variant ${variant} (${variant === "web" ? "html &" : `@media ${variant}`});\n`;
+  });
 
-    return css
-}
+  return css;
+};

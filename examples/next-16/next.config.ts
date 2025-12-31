@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
-import {withUniwind} from 'uniwind-plugin-next'
+import { withUniwind } from "uniwind-plugin-next";
 
 const nextConfig: NextConfig = {
-    turbopack: {},
+  turbopack: {},
 };
 
 export default withUniwind(nextConfig, {
-    cssEntryFile: './src/app/globals.css',
-    extraThemes: ['ocean', 'sunset'],
+  cssEntryFile: "./src/app/globals.css",
+  extraThemes: ["ocean", "sunset"],
 });

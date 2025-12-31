@@ -12,7 +12,7 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-      'uniwind-types.d.ts',
+    "uniwind-types.d.ts",
   ]),
 ]);
 
