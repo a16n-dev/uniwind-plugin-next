@@ -2,9 +2,13 @@
 
 > This is an unofficial plugin, and is not affiliated with Uniwind or Next.js.
 
-[Uniwind](https://uniwind.dev/) config plugin for Next.js. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects. 
+[Uniwind](https://uniwind.dev/) config plugin for Next.js. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects.
 
 The implementation of this plugin is based on the official [Uniwind Vite plugin](https://docs.uniwind.dev/quickstart#vite), and aims to match its functionality as closely as possible. All Uniwind features should work as expected - see the limitations section below for any documented differences.
+
+## Example
+See a fully working example project here: [Demo](http://uniwind-next.a16n.dev/) ([Source](https://github.com/a16n-dev/uniwind-plugin-next/tree/main/examples/next-16))
+
 
 ## Compatibility
 See the table below for tested versions of `uniwind-plugin-next` and corresponding versions of `uniwind`. Other versions of `uniwind` may work, but are not guaranteed to.
@@ -80,7 +84,7 @@ return (
 
 - Be aware that some Uniwind features, such as `withUniwind` and `useResolveClassNames` will not work in a server environment, as they rely on accessing `window` or `document`.
 
-- 
+-
 
 ## Known limitations
 

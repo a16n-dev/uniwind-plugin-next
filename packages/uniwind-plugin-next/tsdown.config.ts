@@ -15,5 +15,6 @@ export default defineConfig({
   copy: [
     { from: "src/webpack/configInjectionLoader.js", to: "dist/webpack" },
     { from: "src/webpack/clientDirectiveLoader.js", to: "dist/webpack" },
+    { from: "../../README.md", to: "." },
   ],
 });

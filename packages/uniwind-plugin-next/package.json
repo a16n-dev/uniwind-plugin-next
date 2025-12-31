@@ -1,7 +1,13 @@
 {
   "name": "uniwind-plugin-next",
   "version": "1.2.0",
+  "author": "Alexander Nicholson",
   "description": "Compatibility plugin for using Uniwind with Next.js",
+  "homepage": "https://github.com/a16n-dev/uniwind-plugin-next#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a16n-dev/uniwind-plugin-next.git"
+  },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
@@ -11,6 +17,7 @@
     "tsdown": "^0.18.2"
   },
   "peerDependencies": {
+    "postcss": "^8",
     "@tailwindcss/node": "^4",
     "lightningcss": ">=1.30.2",
     "uniwind": "~1.2.2",
