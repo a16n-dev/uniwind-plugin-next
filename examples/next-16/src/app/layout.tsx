@@ -26,7 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   // Read the theme from cookies to support SSR with the correct theme
-  const theme = (await getCookie("uniwind-theme", { cookies })) ?? "light";
+  const theme = (await getCookie("uniwind-theme", { cookies })) ?? "dark";
   const adaptive = await getCookie("uniwind-adaptive", { cookies });
 
   return (
