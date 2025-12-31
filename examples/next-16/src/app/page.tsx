@@ -1,16 +1,20 @@
 import { View, Text } from "react-native";
 import { ThemePicker } from "@/app/ThemePicker";
+import { PinWheel } from "@/app/Pinwheel";
 
 export default function Home() {
   return (
-    <View className="flex min-h-screen gap-4 items-center justify-center bg-background font-sans">
-      <Text className={"text-foreground font-semibold text-3xl"}>
-        Next.js with Uniwind Example
-      </Text>
-      <Text className={"text-foreground"}>
-        All content on this page is styled with React Native components &
-        tailwind classes
-      </Text>
+    <View className="flex min-h-screen gap-8 items-center justify-center bg-background font-sans">
+      <View className={"items-center gap-2"}>
+        <PinWheel />
+        <Text className={"text-foreground font-semibold text-3xl"}>
+          Next.js with Uniwind Example
+        </Text>
+        <Text className={"text-foreground"}>
+          All content on this page is styled with React Native components &
+          tailwind classes
+        </Text>
+      </View>
       <ThemePicker />
       <View
         className={
