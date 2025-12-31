@@ -40,7 +40,7 @@ export class UniwindWebpackPlugin {
       },
     );
 
-    // Setup a custom loader to inject the uniwind config
+    // Inject the uniwind reinit() call
     compiler.options.module = compiler.options.module || { rules: [] };
     compiler.options.module.rules.push({
       test: /config\.c?js$/,
