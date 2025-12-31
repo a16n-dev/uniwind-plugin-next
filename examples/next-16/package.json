@@ -1,8 +1,9 @@
 {
-  "name": "my-app",
+  "name": "@uniwind-plugin-next/next-16-example",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "pnpm -w build:packages",
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
@@ -16,7 +17,8 @@
     "react-native": "0.81",
     "react-native-web": "^0.21.2",
     "uniwind": "^1.2.2",
-    "uniwind-plugin-next": "workspace:*"
+    "uniwind-plugin-next": "workspace:*",
+    "react-native-web-tailwind-compat": "workspace:*"
   },
   "devDependencies": {
     "@expo/next-adapter": "^6.0.0",

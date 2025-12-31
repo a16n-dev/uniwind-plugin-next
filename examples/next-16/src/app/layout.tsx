@@ -1,10 +1,11 @@
+import "react-native-web-tailwind-compat";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getCookie } from "cookies-next/server";
 import { cookies } from "next/headers";
 import { UniwindThemeProvider } from "@/app/UniwindThemeProvider";
-import "./globals.css";
 import { ReactNativeWebLayeredStyleSheet } from "@/app/ReactNativeWebLayeredStyleSheet";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

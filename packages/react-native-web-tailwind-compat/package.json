@@ -1,0 +1,37 @@
+{
+  "name": "react-native-web-tailwind-compat",
+  "version": "1.0.0",
+  "author": "Alexander Nicholson",
+  "description": "Adds CSS layers to react native web styles, allowing it to be used with TailwindCSS v4",
+  "homepage": "https://github.com/a16n-dev/uniwind-plugin-next#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/a16n-dev/uniwind-plugin-next.git"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsdown": "^0.18.2"
+  },
+  "peerDependencies": {
+    "react-native-web": "^0.19",
+    "react-native": "^0.79"
+  },
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "files": [
+    "dist",
+    "README.md"
+  ]
+}
