@@ -12,7 +12,7 @@ export type UniwindThemeProviderProps = {
 };
 
 // Set the initial theme from cookies
-const themeCookie = getCookie("uniwind-theme");
+const themeCookie = getCookie("uniwind-theme") ?? "light";
 const adaptiveCookie = getCookie("uniwind-adaptive");
 if (themeCookie || adaptiveCookie)
   Uniwind.setTheme(adaptiveCookie === "true" ? "system" : (themeCookie as any));
