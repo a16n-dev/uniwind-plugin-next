@@ -1,3 +1,4 @@
+"use client";
 import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
 
 if (typeof window !== "undefined") {
