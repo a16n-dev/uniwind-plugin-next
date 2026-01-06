@@ -36,8 +36,5 @@
   "files": [
     "dist",
     "README.md"
-  ],
-  "sideEffects": [
-    "src/reactNativeWebTailwindCompat.ts"
   ]
 }

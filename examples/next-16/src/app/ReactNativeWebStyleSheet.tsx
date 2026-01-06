@@ -1,6 +1,5 @@
 "use client";
 
-import "./sideEffects";
 import { useRef } from "react";
 import { useServerInsertedHTML } from "next/navigation";
 import { getServerStyleSheet } from "react-native-web-tailwind-compat";

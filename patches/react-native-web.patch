@@ -1,12 +1,13 @@
-diff --git a/dist/exports/StyleSheet/dom/createCSSStyleSheet.js b/dist/exports/StyleSheet/dom/createCSSStyleSheet.js
-index 5d14a5f06c66ca41e4d1652c316b797bd4824eb1..e5ecfed752739a39544f3e67ee5086070e3d1260 100644
---- a/dist/exports/StyleSheet/dom/createCSSStyleSheet.js
-+++ b/dist/exports/StyleSheet/dom/createCSSStyleSheet.js
-@@ -12,6 +12,7 @@ import canUseDOM from '../../../modules/canUseDom';
- export default function createCSSStyleSheet(id, rootNode, textContent) {
-   if (canUseDOM) {
-     var root = rootNode != null ? rootNode : document;
-+    console.log('RNW reading stylesheet')
-     var element = root.getElementById(id);
-     if (element == null) {
-       element = document.createElement('style');
+diff --git a/dist/exports/StyleSheet/index.js b/dist/exports/StyleSheet/index.js
+index 891994c511839216d523e68786daea85261539fb..41d86b9b47e9f2199839cda87c32ce375b8a3765 100644
+--- a/dist/exports/StyleSheet/index.js
++++ b/dist/exports/StyleSheet/index.js
+@@ -11,7 +11,7 @@ var _excluded = ["writingDirection"];
+  */
+ 
+ import { atomic, classic, inline } from './compiler';
+-import { createSheet } from './dom';
++import { createSheet } from 'react-native-web-tailwind-compat';
+ import { localizeStyle } from 'styleq/transform-localize-style';
+ import { preprocess } from './preprocess';
+ import { styleq } from 'styleq';
