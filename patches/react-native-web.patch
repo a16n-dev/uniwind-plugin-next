@@ -1,0 +1,13 @@
+diff --git a/dist/exports/StyleSheet/dom/index.js b/dist/exports/StyleSheet/dom/index.js
+index 5b4daf1bec630968ecdcb04b01cb0b0c55fa13ab..4424e909fc41ff54de0d4bc626eb8441debc4e1a 100644
+--- a/dist/exports/StyleSheet/dom/index.js
++++ b/dist/exports/StyleSheet/dom/index.js
+@@ -8,7 +8,7 @@
+  */
+ 
+ import canUseDOM from '../../../modules/canUseDom';
+-import createCSSStyleSheet from './createCSSStyleSheet';
++import {createCSSStyleSheet} from 'react-native-web-tailwind-compat';
+ import createOrderedCSSStyleSheet from './createOrderedCSSStyleSheet';
+ var defaultId = 'react-native-stylesheet';
+ var roots = new WeakMap();
