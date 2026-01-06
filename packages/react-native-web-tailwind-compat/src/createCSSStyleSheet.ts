@@ -1,4 +1,3 @@
-"use client";
 import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
 
 let proxy: CSSStyleSheet | null = null;
@@ -8,7 +7,6 @@ export function createCSSStyleSheet(
   rootNode?: any,
   textContent?: string,
 ): CSSStyleSheet | null {
-  console.log("Hit da proxy");
   return (proxy ??= buildRNWProxy(textContent));
 }
 
