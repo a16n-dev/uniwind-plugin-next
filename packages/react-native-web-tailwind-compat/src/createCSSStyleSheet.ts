@@ -1,8 +1,9 @@
-import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
+const NEW_SHEET_ID = "react-native-stylesheet-layered";
+const layerBoundaryRegex = /\[stylesheet-group="[^01]"]/;
 
 let proxy: CSSStyleSheet | null = null;
 
-export function createCSSStyleSheet(
+export default function createCSSStyleSheet(
   id: string,
   rootNode?: any,
   textContent?: string,

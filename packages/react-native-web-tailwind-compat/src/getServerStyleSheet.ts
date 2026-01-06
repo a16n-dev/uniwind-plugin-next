@@ -1,6 +1,8 @@
 "use client";
 import { StyleSheet } from "react-native";
-import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
+
+const NEW_SHEET_ID = "react-native-stylesheet-layered";
+const layerBoundaryRegex = /\[stylesheet-group="[^01]"]/;
 
 export function getServerStyleSheet() {
   const sheet = (StyleSheet as any).getSheet();
