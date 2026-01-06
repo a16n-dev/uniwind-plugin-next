@@ -7,12 +7,15 @@ export function createCSSStyleSheet(
   id: string,
   rootNode?: any,
   textContent?: string,
-): CSSStyleSheet {
+): CSSStyleSheet | null {
   console.log("Hit da proxy");
   return (proxy ??= buildRNWProxy(textContent));
 }
 
 function buildRNWProxy(initialTextContent?: string) {
+  if (typeof window === "undefined") {
+    return null;
+  }
   const flattenedSheet = new CSSStyleSheet();
   if (initialTextContent) {
     flattenedSheet.replaceSync(initialTextContent);
