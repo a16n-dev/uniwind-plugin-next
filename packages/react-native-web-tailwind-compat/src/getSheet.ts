@@ -4,6 +4,7 @@ import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
 let proxy: CSSStyleSheet | null = null;
 
 export function getSheet(): CSSStyleSheet {
+  console.log("Hit da proxy");
   return (proxy ??= buildRNWProxy());
 }
 
