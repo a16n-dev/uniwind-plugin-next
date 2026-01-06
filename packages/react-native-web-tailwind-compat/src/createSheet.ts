@@ -3,7 +3,7 @@ import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
 
 let proxy: CSSStyleSheet | null = null;
 
-export function getSheet(): CSSStyleSheet {
+export function createSheet(): CSSStyleSheet {
   console.log("Hit da proxy");
   return (proxy ??= buildRNWProxy());
 }

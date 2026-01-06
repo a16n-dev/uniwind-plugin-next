@@ -1,2 +1,2 @@
-export { getSheet } from "./getSheet";
+export { createSheet } from "./createSheet";
 export { getServerStyleSheet } from "./getServerStyleSheet";
