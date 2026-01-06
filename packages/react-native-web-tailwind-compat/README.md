@@ -7,12 +7,10 @@ Tailwind 4 uses CSS layers to organise styles, but react-native-web does not yet
 npm install react-native-web-tailwind-compat
 ```
 
-Import the package at the top of your js entry point:
-
-```ts
-// src/index.tsx
-import 'react-native-web-tailwind-compat';
-// Other imports...
+You will then need to patch `react-native-web` with the following change in `dist/exports/StyleSheet/dom/index.js`
+```diff
+-import createCSSStyleSheet from './createCSSStyleSheet';
++import {createCSSStyleSheet} from 'react-native-web-tailwind-compat';
 ```
 
 Define the layer *before* importing tailwind styles:
