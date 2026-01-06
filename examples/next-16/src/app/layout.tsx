@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { UniwindThemeProvider } from "@/app/UniwindThemeProvider";
 import { ReactNativeWebStyleSheet } from "./ReactNativeWebStyleSheet";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,18 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={theme}>
+      <Script
+        id="global-patch"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+              if (!globalThis.__patched) {
+                globalThis.__patched = true;
+                console.log('Patched via script!');
+              }
+            `,
+        }}
+      />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
