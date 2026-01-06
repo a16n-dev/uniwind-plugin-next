@@ -36,5 +36,6 @@
   "files": [
     "dist",
     "README.md"
-  ]
+  ],
+  "sideEffects": true
 }
