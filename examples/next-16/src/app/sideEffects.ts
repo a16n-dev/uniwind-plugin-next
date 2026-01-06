@@ -5,6 +5,7 @@ export const NEW_SHEET_ID = "react-native-stylesheet-layered";
 export const layerBoundaryRegex = /\[stylesheet-group="[^01]"]/;
 
 if (typeof window !== "undefined") {
+  console.log("Intercepted");
   let elemProxy: HTMLStyleElement;
   const _getElementById = document.getElementById;
   document.getElementById = function (id: string) {
