@@ -1,2 +1,2 @@
-export { createSheet } from "./createSheet";
+export { createCSSStyleSheet } from "./createSheet";
 export { getServerStyleSheet } from "./getServerStyleSheet";

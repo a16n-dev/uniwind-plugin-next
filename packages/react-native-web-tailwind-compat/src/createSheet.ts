@@ -3,13 +3,20 @@ import { layerBoundaryRegex, NEW_SHEET_ID } from "./utils";
 
 let proxy: CSSStyleSheet | null = null;
 
-export function createSheet(): CSSStyleSheet {
+export function createCSSStyleSheet(
+  id: string,
+  rootNode?: any,
+  textContent?: string,
+): CSSStyleSheet {
   console.log("Hit da proxy");
-  return (proxy ??= buildRNWProxy());
+  return (proxy ??= buildRNWProxy(textContent));
 }
 
-function buildRNWProxy() {
+function buildRNWProxy(initialTextContent?: string) {
   const flattenedSheet = new CSSStyleSheet();
+  if (initialTextContent) {
+    flattenedSheet.replaceSync(initialTextContent);
+  }
   let layeredSheet = (document.getElementById(NEW_SHEET_ID) as HTMLStyleElement)
     ?.sheet;
 

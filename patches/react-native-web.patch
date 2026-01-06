@@ -1,13 +1,13 @@
-diff --git a/dist/exports/StyleSheet/index.js b/dist/exports/StyleSheet/index.js
-index 891994c511839216d523e68786daea85261539fb..41d86b9b47e9f2199839cda87c32ce375b8a3765 100644
---- a/dist/exports/StyleSheet/index.js
-+++ b/dist/exports/StyleSheet/index.js
-@@ -11,7 +11,7 @@ var _excluded = ["writingDirection"];
+diff --git a/dist/exports/StyleSheet/dom/index.js b/dist/exports/StyleSheet/dom/index.js
+index 5b4daf1bec630968ecdcb04b01cb0b0c55fa13ab..4424e909fc41ff54de0d4bc626eb8441debc4e1a 100644
+--- a/dist/exports/StyleSheet/dom/index.js
++++ b/dist/exports/StyleSheet/dom/index.js
+@@ -8,7 +8,7 @@
   */
  
- import { atomic, classic, inline } from './compiler';
--import { createSheet } from './dom';
-+import { createSheet } from 'react-native-web-tailwind-compat';
- import { localizeStyle } from 'styleq/transform-localize-style';
- import { preprocess } from './preprocess';
- import { styleq } from 'styleq';
+ import canUseDOM from '../../../modules/canUseDom';
+-import createCSSStyleSheet from './createCSSStyleSheet';
++import {createCSSStyleSheet} from 'react-native-web-tailwind-compat';
+ import createOrderedCSSStyleSheet from './createOrderedCSSStyleSheet';
+ var defaultId = 'react-native-stylesheet';
+ var roots = new WeakMap();
