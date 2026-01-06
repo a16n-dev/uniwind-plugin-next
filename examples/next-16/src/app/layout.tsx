@@ -1,4 +1,4 @@
-import "react-native-web-tailwind-compat";
+import "./sideEffects";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getCookie } from "cookies-next/server";
