@@ -14,5 +14,10 @@
     "@types/node": "^25.0.3",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "react-native-web": "patches/react-native-web.patch"
+    }
   }
 }
