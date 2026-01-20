@@ -47,6 +47,8 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         name: Install pnpm
+        with:
+          run_install: true
 
       - name: Build project
         working-directory: packages/uniwind-plugin-next
