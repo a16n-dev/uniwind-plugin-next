@@ -1,4 +1,4 @@
-name: Auto Update Lucide Dependencies and Release
+name: Publish package
 
 on:
   workflow_dispatch:
