@@ -1,4 +1,4 @@
-name: Publish package
+name: Publish uniwind-next-plugin
 
 on:
   workflow_dispatch:
@@ -22,6 +22,8 @@ jobs:
       - name: Automatic GitHub Release
         uses: justincy/github-action-npm-release@2.0.2
         id: release
+        with:
+          path: packages/uniwind-plugin-next
       - name: Print release output
         if: ${{ steps.release.outputs.released == 'true' }}
         run: echo Release ID ${{ steps.release.outputs.release_id }}
@@ -43,11 +45,14 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies
-        run: pnpm install
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          package_json_file: "packages/uniwind-plugin-next/package.json"
 
       - name: Build project
-        run: pnpm build:packages
+        working-directory: packages/uniwind-plugin-next
+        run: pnpm run build
 
       - name: Publish to npm
         working-directory: packages/uniwind-plugin-next
