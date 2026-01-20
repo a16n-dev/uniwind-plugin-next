@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import { withUniwind } from "uniwind-plugin-next";
 import { withExpo } from "@expo/next-adapter";
-import { NormalModuleReplacementPlugin } from "webpack";
 
 const nextConfig: NextConfig = {
   webpack(config) {
