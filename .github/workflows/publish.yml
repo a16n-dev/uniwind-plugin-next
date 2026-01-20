@@ -23,7 +23,7 @@ jobs:
         uses: justincy/github-action-npm-release@2.0.2
         id: release
         with:
-          path: packages/uniwind-plugin-next
+          path: ${{ github.workspace }}/packages/uniwind-plugin-next
       - name: Print release output
         if: ${{ steps.release.outputs.released == 'true' }}
         run: echo Release ID ${{ steps.release.outputs.release_id }}
