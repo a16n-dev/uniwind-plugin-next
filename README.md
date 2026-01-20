@@ -2,6 +2,8 @@
 
 > This is an unofficial plugin, and is not affiliated with Uniwind or Next.js.
 
+> Support for Uniwind pro is being worked on, but is not yet available. Please open an issue if you would like to see this feature prioritized.
+
 [Uniwind](https://uniwind.dev/) config plugin for Next.js. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects.
 
 ## Example
