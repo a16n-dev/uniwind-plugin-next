@@ -5,7 +5,7 @@
   "description": "Monorepo for Uniwind Next.js plugin and related packages",
   "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
   "scripts": {
-    "build:packages": "pnpm -r --filter '!@uniwind-plugin-next/*' run build",
+    "build": "pnpm -r --filter '!@uniwind-plugin-next/*' run build",
     "clean": "pnpm -r exec rm -rf dist node_modules",
     "typecheck": "pnpm -r run typecheck",
     "test": "pnpm -r run test"
