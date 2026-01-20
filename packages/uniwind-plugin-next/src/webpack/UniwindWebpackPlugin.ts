@@ -1,4 +1,4 @@
-import { UniwindConfig } from "./types";
+import { UniwindConfig, uniwindPackageName } from "./types";
 import type { Compiler } from "webpack";
 import path from "path";
 import { uniq } from "./uniwind/src/utils/common";
@@ -15,11 +15,14 @@ export class UniwindWebpackPlugin {
   private readonly dtsFile: string;
   private readonly cssEntryFile: string;
 
-  constructor({
-    cssEntryFile,
-    extraThemes = [],
-    dtsFile = "uniwind-types.d.ts",
-  }: UniwindConfig) {
+  constructor(
+    private readonly packageName: uniwindPackageName,
+    {
+      cssEntryFile,
+      extraThemes = [],
+      dtsFile = "uniwind-types.d.ts",
+    }: UniwindConfig,
+  ) {
     this.themes = uniq(["light", "dark", ...(extraThemes ?? [])]);
     this.dtsFile = dtsFile;
     this.cssEntryFile = cssEntryFile;
@@ -44,7 +47,7 @@ export class UniwindWebpackPlugin {
     compiler.options.module = compiler.options.module || { rules: [] };
     compiler.options.module.rules.push({
       test: /config\.c?js$/,
-      include: /uniwind[\/\\]dist/,
+      include: new RegExp(`${this.packageName}[\\/\\\\]dist`),
       use: [
         {
           loader: path.resolve(dirname, "configInjectionLoader.js"),
@@ -58,7 +61,9 @@ export class UniwindWebpackPlugin {
     compiler.options.module.rules.push({
       test: /\.js$/,
       exclude: /index\.js$/,
-      include: /uniwind[\/\\]dist[\/\\]module[\/\\]components[\/\\]web/,
+      include: new RegExp(
+        `${this.packageName}[\\/\\\\]dist[\\/\\\\]module[\\/\\\\]components[\\/\\\\]web`,
+      ),
       use: [
         {
           loader: path.resolve(dirname, "clientDirectiveLoader.js"),

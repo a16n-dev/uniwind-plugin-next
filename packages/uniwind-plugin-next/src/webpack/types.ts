@@ -3,3 +3,5 @@ export type UniwindConfig = {
   extraThemes?: Array<string>;
   dtsFile?: string;
 };
+
+export type uniwindPackageName = "uniwind" | "uniwind-pro";
