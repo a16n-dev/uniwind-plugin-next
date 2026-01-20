@@ -1,12 +1,14 @@
 import webpack from "webpack";
 import type { Configuration } from "webpack";
 import path from "path";
-import { UniwindConfig } from "./types";
+import type { UniwindConfig, uniwindPackageName } from "./types";
 import { UniwindWebpackPlugin } from "./UniwindWebpackPlugin";
+import { uniq } from "./util";
 
 const { NormalModuleReplacementPlugin } = webpack;
 
-export function withUniwind(
+export function withUniwindBase(
+  packageName: uniwindPackageName,
   nextConfig: any = {},
   uniwindConfig: UniwindConfig,
 ): any {
@@ -14,7 +16,7 @@ export function withUniwind(
     ...nextConfig,
     transpilePackages: uniq([
       ...(nextConfig.transpilePackages || []),
-      "uniwind",
+      packageName,
       "react-native",
       "react-native-web",
     ]),
@@ -30,19 +32,19 @@ export function withUniwind(
 
           if (
             context.includes(
-              `${path.sep}uniwind${path.sep}dist${path.sep}module${path.sep}components${path.sep}web`,
+              `${path.sep}${packageName}${path.sep}dist${path.sep}module${path.sep}components${path.sep}web`,
             )
           ) {
             // Inside uniwind/dist → react-native-web
             resource.request = "react-native-web";
           } else {
             // Everywhere else → uniwnd/web
-            resource.request = "uniwind/components/index";
+            resource.request = `${packageName}/components/index`;
           }
         }),
       );
 
-      config.plugins.push(new UniwindWebpackPlugin(uniwindConfig));
+      config.plugins.push(new UniwindWebpackPlugin(packageName, uniwindConfig));
 
       // Execute the user-defined webpack config.
       if (typeof nextConfig.webpack === "function") {
@@ -53,5 +55,3 @@ export function withUniwind(
     },
   };
 }
-
-const uniq = <T>(arr: Array<T>) => Array.from(new Set(arr));
