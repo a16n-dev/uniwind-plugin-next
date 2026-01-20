@@ -2,8 +2,6 @@
 
 > This is an unofficial plugin, and is not affiliated with Uniwind or Next.js.
 
-> Support for Uniwind pro is being worked on, but is not yet available. Please open an issue if you would like to see this feature prioritized.
-
 [Uniwind](https://uniwind.dev/) config plugin for Next.js. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects.
 
 ## Example
@@ -15,10 +13,10 @@ See the table below for tested versions of `uniwind-plugin-next` and correspondi
 
 Tested on Next `16.1`, but other versions will likely work fine.
 
-| uniwind-plugin-next | Uniwind |
-|---------------------|---------|
-| `1.1.x`             | `1.2.2` |
-| `1.2.x`             | `1.2.2` |
+| uniwind-plugin-next | Uniwind         |
+|---------------------|-----------------|
+| `1.1.0`-`1.2.0`     | `1.2.2`-`1.2.3` |
+| `1.3.0`             | `1.2.4`         |
 
 ## Installation & setup
 This setup guide assumes you already have a next.js project setup with Tailwind v4
@@ -47,6 +45,8 @@ export default withUniwind(withExpo(nextConfig), {
     // See https://docs.uniwind.dev/api/metro-config#configuration-options
 });
 ```
+
+> If you're using the pro version of Uniwind, use `withUniwindPro()` instead of `withUniwind()`.
 
 3. Add the postcss plugin
 ```js
