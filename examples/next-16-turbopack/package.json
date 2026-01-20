@@ -1,5 +1,5 @@
 {
-  "name": "@uniwind-plugin-next/next-16-example",
+  "name": "@uniwind-plugin-next/next-16-turbopack-example",
   "version": "1.0.0",
   "private": true,
   "scripts": {
