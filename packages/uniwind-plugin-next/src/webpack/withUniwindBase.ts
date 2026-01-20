@@ -3,6 +3,7 @@ import type { Configuration } from "webpack";
 import path from "path";
 import type { UniwindConfig, uniwindPackageName } from "./types";
 import { UniwindWebpackPlugin } from "./UniwindWebpackPlugin";
+import { uniq } from "./util";
 
 const { NormalModuleReplacementPlugin } = webpack;
 
@@ -54,5 +55,3 @@ export function withUniwindBase(
     },
   };
 }
-
-const uniq = <T>(arr: Array<T>) => Array.from(new Set(arr));
