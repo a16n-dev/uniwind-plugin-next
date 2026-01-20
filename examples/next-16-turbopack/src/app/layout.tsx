@@ -1,3 +1,11 @@
+declare global {
+  // eslint-disable-next-line no-var
+  var __DEV__: boolean | undefined;
+}
+
+globalThis.__DEV__ = process.env.NODE_ENV !== "production";
+export {};
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getCookie } from "cookies-next/server";
