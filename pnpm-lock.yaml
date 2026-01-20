@@ -42,8 +42,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/react-native-web-tailwind-compat
       uniwind:
-        specifier: ^1.2.2
-        version: 1.2.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.2.4
+        version: 1.2.4(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       uniwind-plugin-next:
         specifier: workspace:*
         version: link:../../packages/uniwind-plugin-next
@@ -110,8 +110,8 @@ importers:
         specifier: '>=1.30.2'
         version: 1.30.2
       uniwind:
-        specifier: ~1.2.2
-        version: 1.2.2(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ~1.2.4
+        version: 1.2.4(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       webpack:
         specifier: ^5
         version: 5.104.1
@@ -4736,6 +4736,7 @@ packages:
   tar@7.5.2:
     resolution: {integrity: sha512-7NyxrTE4Anh8km8iEy7o0QYPs+0JKBTj5ZaqHg6B39erLg0qYXN3BijtShwbsNSvQ+LN75+KV+C4QR/f6Gwnpg==}
     engines: {node: '>=18'}
+    deprecated: Old versions of tar are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exhorbitant rates) by contacting i@izs.me
 
   temp-dir@2.0.0:
     resolution: {integrity: sha512-aoBAniQmmwtcKp/7BzsH8Cxzv8OL736p7v1ihGb5e9DJ9kTwGWHrQrVB5+lfVDzfGrdRzXch+ig7LHaY1JTOrg==}
@@ -4942,8 +4943,8 @@ packages:
     resolution: {integrity: sha512-uNaeirEPvpZWSgzwsPGtU2zVSTrn/8L5q/IexZmH0eH6SA73CmAA5U4GwORTxQAZs95TAXLNqeLoPPNO5gZfWg==}
     engines: {node: '>=8'}
 
-  uniwind@1.2.2:
-    resolution: {integrity: sha512-6416EvoVMuljO5GI8CpRSv1/d72Ey5LjkhXeAWc5SMGuBZ5Z7nA81KHDFBWjNR+vD9hU8TxWuoYJDhgosEqXvw==}
+  uniwind@1.2.4:
+    resolution: {integrity: sha512-F+DR4qRVMtaUI8sPKVIoGtNXctaKOGV9ULuVJT6a6KSMr9S+R+IbXqLF7Q2ALZnvxiI6XnzeyykbkW8DYl3C0A==}
     peerDependencies:
       react: '>=19.0.0'
       react-native: '>=0.81.0'
@@ -10904,7 +10905,7 @@ snapshots:
     dependencies:
       crypto-random-string: 2.0.0
 
-  uniwind@1.2.2(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
+  uniwind@1.2.4(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
     dependencies:
       '@tailwindcss/node': 4.1.17
       '@tailwindcss/oxide': 4.1.17
@@ -10914,7 +10915,7 @@ snapshots:
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3)
       tailwindcss: 4.1.18
 
-  uniwind@1.2.2(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
+  uniwind@1.2.4(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
     dependencies:
       '@tailwindcss/node': 4.1.17
       '@tailwindcss/oxide': 4.1.17

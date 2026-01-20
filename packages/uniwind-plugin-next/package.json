@@ -25,7 +25,7 @@
     "@tailwindcss/node": "^4",
     "lightningcss": ">=1.30.2",
     "postcss": "^8",
-    "uniwind": "~1.2.2",
+    "uniwind": "~1.2.4",
     "webpack": "^5"
   },
   "exports": {
