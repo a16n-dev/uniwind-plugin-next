@@ -9,13 +9,6 @@ const nextConfig: NextConfig = {
       config.plugins = [];
     }
 
-    config.plugins.push(
-      new NormalModuleReplacementPlugin(
-        /react-native-web\/dist\/exports\/StyleSheet\/dom\/createCSSStyleSheet/,
-        require.resolve("react-native-web-tailwind-compat/createCSSStyleSheet"),
-      ),
-    );
-
     return config;
   },
 };
