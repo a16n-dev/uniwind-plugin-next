@@ -47,8 +47,8 @@ jobs:
         run: pnpm install
 
       - name: Build project
-        run: pnpm build
+        run: pnpm build:packages
 
       - name: Publish to npm
         working-directory: packages/uniwind-plugin-next
-        run: pnpm publish
+        run: npm publish
