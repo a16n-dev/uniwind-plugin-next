@@ -1,7 +1,7 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ["src/postcss/index.ts", "src/index.ts"],
+  entry: ["src/postcss/index.ts", "src/index.ts", "src/turbopack/index.ts"],
   format: ["cjs", "esm"],
   unbundle: true,
   dts: true,

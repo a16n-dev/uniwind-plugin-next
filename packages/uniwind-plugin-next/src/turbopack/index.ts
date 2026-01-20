@@ -1,5 +1,5 @@
-import { withUniwindBase } from "./webpack/withUniwindBase";
-import { UniwindConfig } from "./common/types";
+import { UniwindConfig } from "../common/types";
+import { withUniwindBase } from "./withUniwindBase";
 
 export function withUniwind(
   nextConfig: any = {},

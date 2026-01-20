@@ -37,6 +37,10 @@
       "require": "./dist/postcss/index.cjs",
       "import": "./dist/postcss/index.mjs"
     },
+    "./turbopack": {
+      "require": "./dist/turbopack/index.cjs",
+      "import": "./dist/turbopack/index.mjs"
+    },
     "./package.json": "./package.json",
     "./css": {
       "style": "./dist/webpack/uniwind/uniwind.css"

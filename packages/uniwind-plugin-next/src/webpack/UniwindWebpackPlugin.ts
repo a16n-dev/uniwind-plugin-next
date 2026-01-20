@@ -1,10 +1,10 @@
-import { UniwindConfig, uniwindPackageName } from "./types";
 import type { Compiler } from "webpack";
 import path from "path";
 import { buildCSS } from "./uniwind/src/css";
 import { buildDtsFile } from "./uniwind/src/utils/buildDtsFile";
 import { stringifyThemes } from "./uniwind/src/utils/stringifyThemes";
-import { uniq } from "./util";
+import { uniq } from "../common/util";
+import type { UniwindConfig, uniwindPackageName } from "../common/types";
 
 const dirname =
   typeof __dirname !== "undefined" ? __dirname : import.meta.dirname;
