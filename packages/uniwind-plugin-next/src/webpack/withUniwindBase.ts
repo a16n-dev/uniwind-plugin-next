@@ -44,16 +44,6 @@ export function withUniwindBase(
         }),
       );
 
-      // Rewrite createOrderedCSSStyleSheet from react-native-web to the uniwind version
-      config.plugins.push(
-        new NormalModuleReplacementPlugin(
-          /react-native-web\/dist\/exports\/StyleSheet\/dom\/createCSSStyleSheet/,
-          require.resolve(
-            `${packageName}/components/createOrderedCSSStyleSheet`,
-          ),
-        ),
-      );
-
       config.plugins.push(new UniwindWebpackPlugin(packageName, uniwindConfig));
 
       // Execute the user-defined webpack config.
