@@ -14,7 +14,7 @@ export function withUniwindBase(
 ): any {
   if (typeof uniwindConfig === "undefined") {
     throw new Error(
-      "Uniwind: You need to pass second parameter to withUniwindConfig",
+      "Uniwind: You need to pass a second parameter to withUniwind",
     );
   }
 
