@@ -12,7 +12,6 @@ export function withUniwindBase(
   nextConfig: any = {},
   uniwindConfig: UniwindConfig,
 ): any {
-
   if (typeof uniwindConfig === "undefined") {
     throw new Error(
       "Uniwind: You need to pass second parameter to withUniwindConfig",
@@ -21,7 +20,7 @@ export function withUniwindBase(
 
   if (typeof uniwindConfig.cssEntryFile === "undefined") {
     throw new Error(
-      'Uniwind: You need to pass css entry file to withUniwind, e.g. withUniwind(config, { cssEntryFile: "./global.css" })',
+      'Uniwind: You need to pass a css entry file to withUniwind, e.g. withUniwind(config, { cssEntryFile: "./global.css" })',
     );
   }
 
