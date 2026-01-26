@@ -1,8 +1,6 @@
 # uniwind-plugin-next
 
-> This is an unofficial plugin, and is not affiliated with Uniwind or Next.js.
-
-[Uniwind](https://uniwind.dev/) config plugin for Next.js. Note that only Webpack-based projects are supported, there are no plans to support Turbopack-based projects.
+[Uniwind](https://uniwind.dev/) config plugin for Next.js projects using Webpack. Turbopack is not supported at this stage.
 
 ## Example
 See a fully working example project here: [Demo](http://uniwind-next.a16n.dev/) ([Source](https://github.com/a16n-dev/uniwind-plugin-next/tree/main/examples/next-16))
@@ -13,10 +11,10 @@ See the table below for tested versions of `uniwind-plugin-next` and correspondi
 
 Tested on Next `16.1`, but other versions will likely work fine.
 
-| Uniwind         | uniwind-plugin-next |
-|-----------------|---------------------|
-| `1.2.2`-`1.2.3` | `1.1.0`-`1.2.0`     |
-| `1.2.4`         | `1.3.0`             |
+| Uniwind           | uniwind-plugin-next |
+|-------------------|---------------------|
+| `1.2.2`-`1.2.3`   | `1.1.0`-`1.2.0`     |
+| `1.2.4` - `1.2.6` | `1.3.0`             |
 
 ## Installation & setup
 This setup guide assumes you already have a next.js project setup with Tailwind v4
@@ -45,17 +43,6 @@ export default withUniwind(withExpo(nextConfig), {
     // See https://docs.uniwind.dev/api/metro-config#configuration-options
 });
 ```
-#### Uniwind Pro
-
-If you're using the pro version of Uniwind, use `withUniwindPro()` instead of `withUniwind()`.
-
-```ts
-// next.config.ts
-import { withUniwindPro } from 'uniwind-plugin-next'
-
-export default withUniwindPro(withExpo(nextConfig), { ... });
-```
-
 
 3. Add the postcss plugin
 ```js
@@ -81,13 +68,25 @@ const config = {
 ...
 
 return (
-    <html lang="en" suppressHydrationWarning>
-      ...
-    </html>
+  <html lang="en" suppressHydrationWarning>
+    ...
+  </html>
 );
 ```
 
 6. Start the dev server to generate `uniwind-types.d.ts`. Make sure that it's included in your `tsconfig.json`'s `include` array.
+
+## Uniwind Pro
+
+If you're using the pro version of Uniwind, use `withUniwindPro()` instead of `withUniwind()`.
+
+```ts
+// next.config.ts
+import { withUniwindPro } from 'uniwind-plugin-next'
+
+export default withUniwindPro(withExpo(nextConfig), { ... });
+```
+
 
 ## SSR Considerations
 - This plugin marks all Uniwind web components with `'use client'` automatically, so you do not need to do this manually.
