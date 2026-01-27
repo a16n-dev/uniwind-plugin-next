@@ -1,7 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { withUniwind } from "../withUniwindBase";
+import { withUniwindBase } from "../withUniwindBase";
 import { UniwindWebpackPlugin } from "../UniwindWebpackPlugin";
 import type { Configuration } from "webpack";
+import type { UniwindConfig } from "../types";
+
+function withUniwind(nextConfig: any = {}, uniwindConfig: UniwindConfig): any {
+  return withUniwindBase("uniwind", nextConfig, uniwindConfig);
+}
 
 vi.mock("../UniwindWebpackPlugin", () => ({
   UniwindWebpackPlugin: vi.fn().mockImplementation(function () {
@@ -106,10 +111,10 @@ describe("withUniwind", () => {
 
       const newConfig = result.webpack(webpackConfig, options);
 
-      expect(UniwindWebpackPlugin).toHaveBeenCalledWith({
+      expect(UniwindWebpackPlugin).toHaveBeenCalledWith("uniwind", {
         cssEntryFile: "uniwind.css",
       });
-      expect(newConfig.plugins).toHaveLength(2); // NormalModuleReplacementPlugin + UniwindWebpackPlugin
+      expect(newConfig.plugins).toHaveLength(3); // NormalModuleReplacementPlugin x 2 + UniwindWebpackPlugin
     });
 
     it("should initialize plugins array if not present", () => {
@@ -271,7 +276,10 @@ describe("withUniwind", () => {
 
       result.webpack(webpackConfig, options);
 
-      expect(UniwindWebpackPlugin).toHaveBeenCalledWith(uniwindConfig);
+      expect(UniwindWebpackPlugin).toHaveBeenCalledWith(
+        "uniwind",
+        uniwindConfig,
+      );
     });
   });
 });

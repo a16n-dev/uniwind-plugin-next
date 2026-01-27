@@ -1,6 +1,6 @@
 {
   "name": "uniwind-plugin-next",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "Alexander Nicholson",
   "description": "Compatibility plugin for using Uniwind with Next.js",
   "homepage": "https://github.com/a16n-dev/uniwind-plugin-next#readme",
@@ -25,7 +25,7 @@
     "@tailwindcss/node": "^4",
     "lightningcss": ">=1.30.2",
     "postcss": "^8",
-    "uniwind": "~1.2.4",
+    "uniwind": "^1.2.7",
     "webpack": "^5"
   },
   "exports": {

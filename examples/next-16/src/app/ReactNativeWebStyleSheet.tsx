@@ -2,14 +2,15 @@
 
 import { useRef } from "react";
 import { useServerInsertedHTML } from "next/navigation";
-import { getServerStyleSheet } from "react-native-web-tailwind-compat";
+import { StyleSheet } from "react-native";
 
 export function ReactNativeWebStyleSheet() {
   const hasInserted = useRef(false);
   useServerInsertedHTML(() => {
     if (hasInserted.current) return;
     hasInserted.current = true;
-    const sheet = getServerStyleSheet();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sheet = (StyleSheet as any).getSheet();
 
     return (
       <style
