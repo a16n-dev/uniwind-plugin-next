@@ -37,10 +37,7 @@
       "require": "./dist/postcss/index.cjs",
       "import": "./dist/postcss/index.mjs"
     },
-    "./package.json": "./package.json",
-    "./css": {
-      "style": "./dist/uniwind/uniwind.css"
-    }
+    "./package.json": "./package.json"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
