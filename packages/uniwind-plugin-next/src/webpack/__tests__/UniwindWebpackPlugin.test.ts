@@ -103,11 +103,11 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should generate CSS and DTS files on beforeCompile", async () => {
-      const { buildCSS } = await import("../uniwind/src/css");
+      const { buildCSS } = await import("../../uniwind/src/css");
       const { buildDtsFile } =
-        await import("../uniwind/src/utils/buildDtsFile");
+        await import("../../uniwind/src/utils/buildDtsFile");
       const { stringifyThemes } =
-        await import("../uniwind/src/utils/stringifyThemes");
+        await import("../../uniwind/src/utils/stringifyThemes");
 
       const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
         cssEntryFile: "uniwind.css",
@@ -130,7 +130,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should only run once even if beforeCompile is called multiple times", async () => {
-      const { buildCSS } = await import("../uniwind/src/css");
+      const { buildCSS } = await import("../../uniwind/src/css");
 
       const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
         cssEntryFile: "uniwind.css",
