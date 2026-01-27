@@ -1,9 +1,9 @@
 import webpack from "webpack";
 import type { Configuration } from "webpack";
 import path from "path";
-import type { UniwindConfig, uniwindPackageName } from "./types";
 import { UniwindWebpackPlugin } from "./UniwindWebpackPlugin";
-import { uniq } from "./util";
+import { UniwindConfig, uniwindPackageName } from "../common/types";
+import { uniq } from "../common/util";
 
 const { NormalModuleReplacementPlugin } = webpack;
 

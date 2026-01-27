@@ -39,7 +39,7 @@
     },
     "./package.json": "./package.json",
     "./css": {
-      "style": "./dist/webpack/uniwind/uniwind.css"
+      "style": "./dist/uniwind/uniwind.css"
     }
   },
   "main": "./dist/index.cjs",
