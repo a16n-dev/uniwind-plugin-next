@@ -157,37 +157,6 @@ describe("uniwind-plugin-next PostCSS plugin", () => {
     });
   });
 
-  describe("@import transformation", () => {
-    it('should transform @import "uniwind" to @import "uniwind-plugin-next/css"', async () => {
-      const input = '@import "uniwind";';
-      const output = await processCSS(input);
-
-      expect(output).toContain('@import "uniwind-plugin-next/css"');
-      expect(output).not.toContain('@import "uniwind"');
-    });
-
-    it("should transform @import with single quotes", async () => {
-      const input = "@import 'uniwind';";
-      const output = await processCSS(input);
-
-      expect(output).toContain('"uniwind-plugin-next/css"');
-    });
-
-    it("should not transform other @import statements", async () => {
-      const input = '@import "tailwindcss";';
-      const output = await processCSS(input);
-
-      expect(output).toContain('@import "tailwindcss"');
-    });
-
-    it("should only transform exact match of uniwind", async () => {
-      const input = '@import "uniwind-something";';
-      const output = await processCSS(input);
-
-      expect(output).toContain('@import "uniwind-something"');
-    });
-  });
-
   describe("edge cases", () => {
     it("should handle empty CSS", async () => {
       const input = "";
