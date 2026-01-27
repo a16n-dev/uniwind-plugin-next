@@ -88,8 +88,8 @@ importers:
         specifier: '>=1.30.2'
         version: 1.30.2
       uniwind:
-        specifier: ~1.2.4
-        version: 1.2.4(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
+        specifier: ^1.2.7
+        version: 1.2.7(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18)
       webpack:
         specifier: ^5
         version: 5.104.1
@@ -4742,6 +4742,13 @@ packages:
 
   uniwind@1.2.4:
     resolution: {integrity: sha512-F+DR4qRVMtaUI8sPKVIoGtNXctaKOGV9ULuVJT6a6KSMr9S+R+IbXqLF7Q2ALZnvxiI6XnzeyykbkW8DYl3C0A==}
+    peerDependencies:
+      react: '>=19.0.0'
+      react-native: '>=0.81.0'
+      tailwindcss: '>=4'
+
+  uniwind@1.2.7:
+    resolution: {integrity: sha512-4aclu1rpqh9XSSyw8/3buNud7BAw7sPadX70WYXYp+9csgTGTqt9o/QaPPfpliULUSaG8ONDY1+gC4ylz+coyg==}
     peerDependencies:
       react: '>=19.0.0'
       react-native: '>=0.81.0'
@@ -10356,7 +10363,7 @@ snapshots:
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3)
       tailwindcss: 4.1.18
 
-  uniwind@1.2.4(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
+  uniwind@1.2.7(react-native@0.83.1(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.2.3))(react@19.2.3)(tailwindcss@4.1.18):
     dependencies:
       '@tailwindcss/node': 4.1.17
       '@tailwindcss/oxide': 4.1.17
