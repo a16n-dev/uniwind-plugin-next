@@ -1,10 +1,11 @@
-import { UniwindConfig, uniwindPackageName } from "./types";
 import type { Compiler } from "webpack";
 import path from "path";
-import { buildCSS } from "./uniwind/src/css";
-import { buildDtsFile } from "./uniwind/src/utils/buildDtsFile";
-import { stringifyThemes } from "./uniwind/src/utils/stringifyThemes";
-import { uniq } from "./util";
+import { cp } from "fs/promises";
+import { UniwindConfig, uniwindPackageName } from "../common/types";
+import { uniq } from "../common/util";
+import { buildCSS } from "../uniwind/src/css";
+import { buildDtsFile } from "../uniwind/src/utils/buildDtsFile";
+import { stringifyThemes } from "../uniwind/src/utils/stringifyThemes";
 
 const dirname =
   typeof __dirname !== "undefined" ? __dirname : import.meta.dirname;
@@ -40,6 +41,19 @@ export class UniwindWebpackPlugin {
 
         // 2. Generate uniwind-types.d.ts
         buildDtsFile(this.dtsFile, stringifyThemes(this.themes));
+
+        // 3. Move uniwind.css to the uniwind package dist folder
+        const builtCSSPath = path.resolve(dirname, "../uniwind/uniwind.css");
+        const targetCSSPath = path.join(
+          path.dirname(
+            require.resolve(this.packageName + "/package.json", {
+              paths: [compiler.context],
+            }),
+          ),
+          "uniwind.css",
+        );
+
+        await cp(builtCSSPath, targetCSSPath, { force: true });
       },
     );
 

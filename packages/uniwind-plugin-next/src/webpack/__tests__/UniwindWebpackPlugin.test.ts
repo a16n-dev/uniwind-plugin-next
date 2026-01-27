@@ -5,18 +5,22 @@ import type { Compiler } from "webpack";
 const PACKAGE_NAME = "uniwind";
 
 // Mock the dependencies
-vi.mock("../uniwind/src/css", () => ({
+vi.mock("../../uniwind/src/css", () => ({
   buildCSS: vi.fn().mockResolvedValue(undefined),
 }));
 
-vi.mock("../uniwind/src/utils/buildDtsFile", () => ({
+vi.mock("../../uniwind/src/utils/buildDtsFile", () => ({
   buildDtsFile: vi.fn(),
 }));
 
-vi.mock("../uniwind/src/utils/stringifyThemes", () => ({
+vi.mock("../../uniwind/src/utils/stringifyThemes", () => ({
   stringifyThemes: vi.fn(
     (themes) => `[${themes.map((t: string) => `'${t}'`).join(", ")}]`,
   ),
+}));
+
+vi.mock("fs/promises", () => ({
+  cp: vi.fn().mockResolvedValue(undefined),
 }));
 
 describe("UniwindWebpackPlugin", () => {
@@ -28,6 +32,7 @@ describe("UniwindWebpackPlugin", () => {
 
     beforeCompileCallback = vi.fn();
     mockCompiler = {
+      context: process.cwd(),
       hooks: {
         beforeCompile: {
           tapPromise: vi.fn((name, callback) => {
@@ -103,11 +108,11 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should generate CSS and DTS files on beforeCompile", async () => {
-      const { buildCSS } = await import("../uniwind/src/css");
+      const { buildCSS } = await import("../../uniwind/src/css");
       const { buildDtsFile } =
-        await import("../uniwind/src/utils/buildDtsFile");
+        await import("../../uniwind/src/utils/buildDtsFile");
       const { stringifyThemes } =
-        await import("../uniwind/src/utils/stringifyThemes");
+        await import("../../uniwind/src/utils/stringifyThemes");
 
       const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
         cssEntryFile: "uniwind.css",
@@ -130,7 +135,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should only run once even if beforeCompile is called multiple times", async () => {
-      const { buildCSS } = await import("../uniwind/src/css");
+      const { buildCSS } = await import("../../uniwind/src/css");
 
       const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
         cssEntryFile: "uniwind.css",

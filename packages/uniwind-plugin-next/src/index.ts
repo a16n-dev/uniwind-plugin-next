@@ -1,4 +1,4 @@
-import type { UniwindConfig } from "./webpack/types";
+import type { UniwindConfig } from "./common/types";
 import { withUniwindBase } from "./webpack/withUniwindBase";
 
 export function withUniwind(

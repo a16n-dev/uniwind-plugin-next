@@ -5,13 +5,7 @@ export default defineConfig({
   format: ["cjs", "esm"],
   unbundle: true,
   dts: true,
-  exports: {
-    customExports(pkg) {
-      if (!pkg["./css"]) pkg["./css"] = {};
-      pkg["./css"].style = "./dist/webpack/uniwind/uniwind.css";
-      return pkg;
-    },
-  },
+  exports: true,
   copy: [
     { from: "src/webpack/configInjectionLoader.js", to: "dist/webpack" },
     { from: "src/webpack/clientDirectiveLoader.js", to: "dist/webpack" },
