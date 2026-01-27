@@ -1,0 +1,36 @@
+{
+  "name": "@uniwind-plugin-next/next-16-uniwind-pro-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prebuild": "pnpm -w build:packages",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "cookies-next": "^6.1.1",
+    "next": "16.1.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.81",
+    "react-native-web": "^0.21.2",
+    "uniwind": "npm:uniwind-pro@beta",
+    "uniwind-plugin-next": "workspace:*"
+  },
+  "devDependencies": {
+    "@expo/next-adapter": "^6.0.0",
+    "@tailwindcss/node": "^4.1.18",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "webpack": "^5.104.1"
+  },
+  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
+}
