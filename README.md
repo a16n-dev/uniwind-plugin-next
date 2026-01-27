@@ -76,18 +76,6 @@ return (
 
 6. Start the dev server to generate `uniwind-types.d.ts`. Make sure that it's included in your `tsconfig.json`'s `include` array.
 
-## Uniwind Pro
-
-If you're using the pro version of Uniwind, use `withUniwindPro()` instead of `withUniwind()`.
-
-```ts
-// next.config.ts
-import { withUniwindPro } from 'uniwind-plugin-next'
-
-export default withUniwindPro(withExpo(nextConfig), { ... });
-```
-
-
 ## SSR Considerations
 - This plugin marks all Uniwind web components with `'use client'` automatically, so you do not need to do this manually.
 
