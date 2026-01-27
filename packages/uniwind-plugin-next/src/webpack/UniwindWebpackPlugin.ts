@@ -1,5 +1,6 @@
 import type { Compiler } from "webpack";
 import path from "path";
+import fs from "fs/promises";
 import { UniwindConfig, uniwindPackageName } from "../common/types";
 import { uniq } from "../common/util";
 import { buildCSS } from "../uniwind/src/css";
@@ -40,6 +41,15 @@ export class UniwindWebpackPlugin {
 
         // 2. Generate uniwind-types.d.ts
         buildDtsFile(this.dtsFile, stringifyThemes(this.themes));
+
+        // 3. Move uniwind.css to the uniwind package dist folder
+        const builtCSSPath = path.resolve(dirname, "../uniwind/uniwind.css");
+        const targetCSSPath = path.join(
+          path.dirname(require.resolve(this.packageName + "/package.json")),
+          "uniwind.css",
+        );
+
+        await fs.cp(builtCSSPath, targetCSSPath, { force: true });
       },
     );
 
