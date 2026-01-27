@@ -49,11 +49,9 @@ export function withUniwindBase(
             context.includes(`/${UNIWIND_PACKAGE_NAME}/dist`) ||
             context.includes(`/${UNIWIND_PRO_PACKAGE_NAME}/dist`)
           ) {
-            console.log("Rewrite to react-native-web:\n", resource.context);
             // Inside uniwind/dist → react-native-web
             resource.request = "react-native-web";
           } else {
-            console.log("Rewrite to uniwind:\n", resource.context);
             // Everywhere else → uniwind/web
             resource.request = `${UNIWIND_PACKAGE_NAME}/components/index`;
           }

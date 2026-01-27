@@ -62,7 +62,9 @@ export class UniwindWebpackPlugin {
     compiler.options.module = compiler.options.module || { rules: [] };
     compiler.options.module.rules.push({
       test: /config\.c?js$/,
-      include: new RegExp(`${UNIWIND_PACKAGE_NAME}[\\/\\\\]dist`),
+      include: new RegExp(
+        `(${UNIWIND_PACKAGE_NAME}|${UNIWIND_PRO_PACKAGE_NAME})[\\/\\\\]dist`,
+      ),
       use: [
         {
           loader: path.resolve(dirname, "configInjectionLoader.js"),
