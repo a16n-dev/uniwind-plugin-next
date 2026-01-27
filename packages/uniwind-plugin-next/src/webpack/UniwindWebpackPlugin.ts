@@ -47,7 +47,7 @@ export class UniwindWebpackPlugin {
         const targetCSSPath = path.join(
           path.dirname(
             require.resolve(this.packageName + "/package.json", {
-              paths: [process.cwd()],
+              paths: [compiler.context],
             }),
           ),
           "uniwind.css",
