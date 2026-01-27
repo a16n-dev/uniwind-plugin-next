@@ -8,7 +8,9 @@
     "build:packages": "pnpm -r --filter '!@uniwind-plugin-next/*' run build",
     "clean": "pnpm -r exec rm -rf dist node_modules",
     "typecheck": "pnpm -r run typecheck",
-    "test": "pnpm -r run test"
+    "format": "pnpm -r run format",
+    "test": "pnpm -r run test",
+    "sync:uniwind": "./scripts/sync-uniwind.sh&& pnpm format"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
