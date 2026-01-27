@@ -5,18 +5,22 @@ import type { Compiler } from "webpack";
 const PACKAGE_NAME = "uniwind";
 
 // Mock the dependencies
-vi.mock("../uniwind/src/css", () => ({
+vi.mock("../../uniwind/src/css", () => ({
   buildCSS: vi.fn().mockResolvedValue(undefined),
 }));
 
-vi.mock("../uniwind/src/utils/buildDtsFile", () => ({
+vi.mock("../../uniwind/src/utils/buildDtsFile", () => ({
   buildDtsFile: vi.fn(),
 }));
 
-vi.mock("../uniwind/src/utils/stringifyThemes", () => ({
+vi.mock("../../uniwind/src/utils/stringifyThemes", () => ({
   stringifyThemes: vi.fn(
     (themes) => `[${themes.map((t: string) => `'${t}'`).join(", ")}]`,
   ),
+}));
+
+vi.mock("fs/promises", () => ({
+  cp: vi.fn().mockResolvedValue(undefined),
 }));
 
 describe("UniwindWebpackPlugin", () => {
@@ -28,6 +32,7 @@ describe("UniwindWebpackPlugin", () => {
 
     beforeCompileCallback = vi.fn();
     mockCompiler = {
+      context: process.cwd(),
       hooks: {
         beforeCompile: {
           tapPromise: vi.fn((name, callback) => {

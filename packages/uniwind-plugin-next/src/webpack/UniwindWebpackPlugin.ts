@@ -1,6 +1,6 @@
 import type { Compiler } from "webpack";
 import path from "path";
-import fs from "fs/promises";
+import { cp } from "fs/promises";
 import { UniwindConfig, uniwindPackageName } from "../common/types";
 import { uniq } from "../common/util";
 import { buildCSS } from "../uniwind/src/css";
@@ -53,7 +53,7 @@ export class UniwindWebpackPlugin {
           "uniwind.css",
         );
 
-        await fs.cp(builtCSSPath, targetCSSPath, { force: true });
+        await cp(builtCSSPath, targetCSSPath, { force: true });
       },
     );
 
