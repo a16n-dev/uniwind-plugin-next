@@ -50,10 +50,25 @@ export function withUniwindBase(
             // Inside uniwind/dist → react-native-web
             resource.request = "react-native-web";
           } else {
-            // Everywhere else → uniwnd/web
+            // Everywhere else → uniwind/web
             resource.request = `${packageName}/components/index`;
           }
         }),
+      );
+
+      // Rewrite createOrderedCSSStyleSheet from react-native-web to the Uniwind version
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(
+          /^\.\/createOrderedCSSStyleSheet$/,
+          (resource) => {
+            const context = resource.context || "";
+
+            // Scope rewrite to react-native-web only
+            if (context.includes("react-native-web/dist/exports/StyleSheet")) {
+              resource.request = `${packageName}/components/createOrderedCSSStyleSheet`;
+            }
+          },
+        ),
       );
 
       config.plugins.push(new UniwindWebpackPlugin(packageName, uniwindConfig));
