@@ -1,14 +1,16 @@
 import webpack from "webpack";
 import type { Configuration } from "webpack";
-import path from "path";
 import { UniwindWebpackPlugin } from "./UniwindWebpackPlugin";
-import { UniwindConfig, uniwindPackageName } from "../common/types";
+import { UniwindConfig } from "../common/types";
 import { uniq } from "../common/util";
+import {
+  UNIWIND_PACKAGE_NAME,
+  UNIWIND_PRO_PACKAGE_NAME,
+} from "../common/constants";
 
 const { NormalModuleReplacementPlugin } = webpack;
 
-export function withUniwindBase(
-  packageName: uniwindPackageName,
+export function withUniwind(
   nextConfig: any = {},
   uniwindConfig: UniwindConfig,
 ): any {
@@ -28,7 +30,8 @@ export function withUniwindBase(
     ...nextConfig,
     transpilePackages: uniq([
       ...(nextConfig.transpilePackages || []),
-      packageName,
+      UNIWIND_PACKAGE_NAME,
+      UNIWIND_PRO_PACKAGE_NAME,
       "react-native",
       "react-native-web",
     ]),
@@ -43,15 +46,14 @@ export function withUniwindBase(
           const context = resource.context || "";
 
           if (
-            context.includes(
-              `${path.sep}${packageName}${path.sep}dist${path.sep}module${path.sep}components${path.sep}web`,
-            )
+            context.includes(`/${UNIWIND_PACKAGE_NAME}/dist`) ||
+            context.includes(`/${UNIWIND_PRO_PACKAGE_NAME}/dist`)
           ) {
             // Inside uniwind/dist → react-native-web
             resource.request = "react-native-web";
           } else {
             // Everywhere else → uniwind/web
-            resource.request = `${packageName}/components/index`;
+            resource.request = `${UNIWIND_PACKAGE_NAME}/components/index`;
           }
         }),
       );
@@ -65,13 +67,13 @@ export function withUniwindBase(
 
             // Scope rewrite to react-native-web only
             if (context.includes("react-native-web/dist/exports/StyleSheet")) {
-              resource.request = `${packageName}/components/createOrderedCSSStyleSheet`;
+              resource.request = `${UNIWIND_PACKAGE_NAME}/components/createOrderedCSSStyleSheet`;
             }
           },
         ),
       );
 
-      config.plugins.push(new UniwindWebpackPlugin(packageName, uniwindConfig));
+      config.plugins.push(new UniwindWebpackPlugin(uniwindConfig));
 
       // Execute the user-defined webpack config.
       if (typeof nextConfig.webpack === "function") {

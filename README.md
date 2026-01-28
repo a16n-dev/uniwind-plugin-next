@@ -2,6 +2,8 @@
 
 [Uniwind](https://uniwind.dev/) config plugin for Next.js projects using Webpack. Turbopack-based projects are not supported at this stage.
 
+✅ Supports both Uniwind and Uniwind Pro
+
 ## Example
 See a fully working example project here: [Demo](http://uniwind-next.a16n.dev/) ([Source](https://github.com/a16n-dev/uniwind-plugin-next/tree/main/examples/next-16))
 
@@ -10,11 +12,11 @@ See the table below for tested versions of `uniwind-plugin-next` and correspondi
 
 Tested on Next `16.1`, but other versions will likely work fine.
 
-| Uniwind           | uniwind-plugin-next |
-|-------------------|---------------------|
-| `1.2.7`           | `1.4.0`             |
-| `1.2.4` - `1.2.6` | `1.3.0`             |
-| `1.2.2`-`1.2.3`   | `1.2.0`             |
+| Uniwind           | Uniwind Pro    | uniwind-plugin-next |
+|-------------------|----------------|---------------------|
+| `1.2.7`           | `1.0.0-beta.9` | `1.4.2`             |
+| `1.2.4` - `1.2.6` | N/A            | `1.3.0`             |
+| `1.2.2`-`1.2.3`   | N/A            | `1.2.0`             |
 
 ## Installation & setup
 This setup guide assumes you already have a next.js project setup with Tailwind v4
