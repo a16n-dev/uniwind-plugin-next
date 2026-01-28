@@ -2,6 +2,8 @@
 
 [Uniwind](https://uniwind.dev/) config plugin for Next.js projects using Webpack. Turbopack-based projects are not supported at this stage.
 
+✅ Supports both Uniwind and Uniwind Pro
+
 ## Example
 See a fully working example project here: [Demo](http://uniwind-next.a16n.dev/) ([Source](https://github.com/a16n-dev/uniwind-plugin-next/tree/main/examples/next-16))
 
