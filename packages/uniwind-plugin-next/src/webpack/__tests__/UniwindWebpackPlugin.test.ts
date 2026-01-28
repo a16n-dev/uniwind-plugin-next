@@ -50,7 +50,7 @@ describe("UniwindWebpackPlugin", () => {
 
   describe("constructor", () => {
     it("should initialize with default themes when no extraThemes provided", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 
@@ -58,7 +58,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should merge extraThemes with default themes", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
         extraThemes: ["brand", "custom"],
       });
@@ -67,7 +67,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should deduplicate themes", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
         extraThemes: ["light", "dark", "brand"],
       });
@@ -76,7 +76,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should use default dtsFile when not provided", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 
@@ -84,7 +84,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should use custom dtsFile when provided", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
         dtsFile: "custom-types.d.ts",
       });
@@ -95,7 +95,7 @@ describe("UniwindWebpackPlugin", () => {
 
   describe("apply", () => {
     it("should register beforeCompile hook", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 
@@ -114,7 +114,7 @@ describe("UniwindWebpackPlugin", () => {
       const { stringifyThemes } =
         await import("../../uniwind/src/utils/stringifyThemes");
 
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
         extraThemes: ["brand"],
         dtsFile: "types.d.ts",
@@ -137,7 +137,7 @@ describe("UniwindWebpackPlugin", () => {
     it("should only run once even if beforeCompile is called multiple times", async () => {
       const { buildCSS } = await import("../../uniwind/src/css");
 
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 
@@ -151,7 +151,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should add configInjectionLoader webpack rule", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 
@@ -178,7 +178,7 @@ describe("UniwindWebpackPlugin", () => {
     });
 
     it("should add clientDirectiveLoader webpack rule", () => {
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 
@@ -207,7 +207,7 @@ describe("UniwindWebpackPlugin", () => {
         options: {},
       } as any;
 
-      const plugin = new UniwindWebpackPlugin(PACKAGE_NAME, {
+      const plugin = new UniwindWebpackPlugin({
         cssEntryFile: "uniwind.css",
       });
 

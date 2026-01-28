@@ -10,7 +10,7 @@ import {
 
 const { NormalModuleReplacementPlugin } = webpack;
 
-export function withUniwindBase(
+export function withUniwind(
   nextConfig: any = {},
   uniwindConfig: UniwindConfig,
 ): any {

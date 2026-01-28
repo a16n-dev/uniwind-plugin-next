@@ -1,12 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { withUniwindBase } from "../withUniwindBase";
+import { withUniwind } from "../withUniwind";
 import { UniwindWebpackPlugin } from "../UniwindWebpackPlugin";
 import type { Configuration } from "webpack";
-import type { UniwindConfig } from "../types";
-
-function withUniwind(nextConfig: any = {}, uniwindConfig: UniwindConfig): any {
-  return withUniwindBase("uniwind", nextConfig, uniwindConfig);
-}
 
 vi.mock("../UniwindWebpackPlugin", () => ({
   UniwindWebpackPlugin: vi.fn().mockImplementation(function () {
@@ -63,7 +58,7 @@ describe("withUniwind", () => {
 
     it("should deduplicate transpilePackages", () => {
       const nextConfig = {
-        transpilePackages: ["uniwind", "react-native"],
+        transpilePackages: ["uniwind", "uniwind-pro", "react-native"],
       };
 
       const result = withUniwind(nextConfig, {
@@ -73,7 +68,11 @@ describe("withUniwind", () => {
       const uniwindCount = result.transpilePackages.filter(
         (p: string) => p === "uniwind",
       ).length;
+      const uniwindProCount = result.transpilePackages.filter(
+        (p: string) => p === "uniwind-pro",
+      ).length;
       expect(uniwindCount).toBe(1);
+      expect(uniwindProCount).toBe(1);
     });
 
     it("should preserve other Next.js config properties", () => {
@@ -111,7 +110,7 @@ describe("withUniwind", () => {
 
       const newConfig = result.webpack(webpackConfig, options);
 
-      expect(UniwindWebpackPlugin).toHaveBeenCalledWith("uniwind", {
+      expect(UniwindWebpackPlugin).toHaveBeenCalledWith({
         cssEntryFile: "uniwind.css",
       });
       expect(newConfig.plugins).toHaveLength(3); // NormalModuleReplacementPlugin x 2 + UniwindWebpackPlugin
@@ -276,10 +275,7 @@ describe("withUniwind", () => {
 
       result.webpack(webpackConfig, options);
 
-      expect(UniwindWebpackPlugin).toHaveBeenCalledWith(
-        "uniwind",
-        uniwindConfig,
-      );
+      expect(UniwindWebpackPlugin).toHaveBeenCalledWith(uniwindConfig);
     });
   });
 });
